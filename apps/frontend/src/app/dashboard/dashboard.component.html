@@ -1,0 +1,44 @@
+<div class="dashboard">
+    <ph-topbar style="grid-row: 1; grid-column: 2;">
+        <ph-topbar-header [title]="view" [subtitle]="tab"></ph-topbar-header>
+        <ph-topbar-item [label]="'GNRL'" (click)="this.tab='GNRL'"></ph-topbar-item>
+        <ph-topbar-item *ngIf="auth.role == 'admin'" [label]="'DRONE'" (click)="this.tab='DRONE'"></ph-topbar-item>
+    </ph-topbar>
+    <ph-sidebar style="grid-row: 1 / 3; grid-column: 1;">
+        <ph-sidebar-item>
+            DHBRD
+        </ph-sidebar-item>
+    </ph-sidebar>
+
+    <div class="content">
+        <div class="workspace">
+            <ph-window *ngIf="this.tab == 'GNRL'" [title]="'POWER PLANT'" [subtitle]="'TR2805'" style="grid-row:1/5; grid-column: 1/38">
+                <app-power-plant></app-power-plant>
+            </ph-window>
+            <ph-window *ngIf="this.tab == 'GNRL'" [title]="'BASE DEVICE POWER'" [subtitle]="'GRD8015'" style="grid-row:5/12; grid-column: 1/38">
+                <lsx-device-control></lsx-device-control>
+            </ph-window>
+            <ph-window *ngIf="this.tab == 'GNRL'" [title]="'BASE POWER GRID'" [subtitle]="'GRD8015'" style="grid-row:12/36; grid-column: 1/38">
+                <lsx-light-control></lsx-light-control>
+            </ph-window>
+            <ph-window *ngIf="auth.role == 'admin' && this.tab == 'GNRL'" [title]="'LOCKDOWN'" [subtitle]="'TR2805'" style="grid-row:1/6; grid-column: 38/58">
+                <base-lockdown></base-lockdown>
+            </ph-window>
+            <ph-window *ngIf="auth.role == 'admin' && this.tab == 'GNRL'" [title]="'ANNOUNCEMENT'" [subtitle]="'TR2805'" style="grid-row:6/19; grid-column: 38/58">
+                <speaker-announcements></speaker-announcements>
+            </ph-window>
+            <ph-window *ngIf="auth.role == 'tec' && this.tab == 'GNRL'" [title]="'ANNOUNCEMENT'" [subtitle]="'TR2805'" style="grid-row:1/11; grid-column: 38/58">
+                <speaker-announcements></speaker-announcements>
+            </ph-window>
+            <ph-window *ngIf="auth.role == 'admin' && this.tab == 'GNRL'" [title]="'FLUFF'" [subtitle]="'TR2805'" style="grid-row:19/36; grid-column: 38/58">
+                <speaker-fluff></speaker-fluff>
+            </ph-window>
+            <ph-window *ngIf="auth.role == 'admin' && this.tab == 'DRONE'" [title]="'EXPLOSIONS'" [subtitle]="'TR2805'" style="grid-row:1/32; grid-column: 1/46">
+                <drone-bombardment></drone-bombardment>
+            </ph-window>
+            <ph-window *ngIf="auth.role == 'admin' && this.tab == 'DRONE'" [title]="'DRONE'" [subtitle]="'TR2805'" style="grid-row:1/16; grid-column: 46/66">
+                <drone-control></drone-control>
+            </ph-window>
+        </div>
+    </div>
+</div>

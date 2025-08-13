@@ -1,0 +1,551 @@
+:host {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.st2 {
+    cursor: pointer;
+}
+
+.st3:nth-child(2) {
+    cursor: pointer;;
+}
+
+#cic {
+    circle.st3:nth-child(1n + 6) {
+        display: none;
+    }
+}
+
+#cic.animate {
+    @keyframes cic-move {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        25% {
+            transform: translate3d(0, -5.68%, 0);
+        }
+        75% {
+            transform: translate3d(-9.83%, -5.68%, 0);
+        }
+        100% {
+            transform: translate3d(-9.83%, 0, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 6) {
+        display: block;
+    }
+    circle:nth-child(6) {
+        animation: cic-move 5s  linear infinite;
+    }
+    circle:nth-child(7) {
+        animation: cic-move 5s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(8) {
+        animation: cic-move 5s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(9) {
+        animation: cic-move 5s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(10) {
+        animation: cic-move 5s  linear infinite;
+        animation-delay: -4s;
+    }
+    circle:nth-child(11) {
+        animation: cic-move 5s  linear infinite;
+        animation-delay: -5s;
+    }
+}
+
+#sci {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#sci.animate {
+    @keyframes sci-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-7.9%, 0, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+        pointer-events: none;
+    }
+
+    circle:nth-child(5) {
+        animation: sci-move 2s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: sci-move 2s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: sci-move 2s  linear infinite;
+        animation-delay: -2s;
+    }
+}
+
+#tec {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#tec.animate {
+    @keyframes tec-move {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        55% {
+            transform: translate3d(0, -10.4%, 0);
+        }
+        100% {
+            transform: translate3d(-7.55%, -10.4%, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+    circle:nth-child(5) {
+        animation: tec-move 5s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: tec-move 5s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: tec-move 5s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(8) {
+        animation: tec-move 5s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(9) {
+        animation: tec-move 5s  linear infinite;
+        animation-delay: -4s;
+    }
+    circle:nth-child(10) {
+        animation: tec-move 5s  linear infinite;
+        animation-delay: -5s;
+    }
+}
+
+#med {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#med.animate {
+    @keyframes med-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-12.75%, 0, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+
+    circle:nth-child(5) {
+        animation: med-move 3s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: med-move 3s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: med-move 3s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(8) {
+        animation: med-move 3s  linear infinite;
+        animation-delay: -3s;
+    }
+}
+
+#parcel_og {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#parcel_og.animate {
+    @keyframes parcel_og-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-59.75%, 0, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+
+    circle:nth-child(5) {
+        animation: parcel_og-move 14s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(8) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(9) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -4s;
+    }
+    circle:nth-child(10) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -5s;
+    }
+    circle:nth-child(11) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -6s;
+    }
+    circle:nth-child(12) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -7s;
+    }
+    circle:nth-child(13) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -8s;
+    }
+    circle:nth-child(14) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -9s;
+    }
+    circle:nth-child(15) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -10s;
+    }
+    circle:nth-child(16) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -11s;
+    }
+    circle:nth-child(17) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -12s;
+    }
+    circle:nth-child(18) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -13s;
+    }
+    circle:nth-child(19) {
+        animation: parcel_og-move 14s  linear infinite;
+        animation-delay: -14s;
+    }
+}
+
+#fc {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#fc.animate {
+    @keyframes fc-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-20.75%, 0, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+        pointer-events: none;
+    }
+
+    circle:nth-child(5) {
+        animation: fc-move 6s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: fc-move 6s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: fc-move 6s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(8) {
+        animation: fc-move 6s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(9) {
+        animation: fc-move 6s  linear infinite;
+        animation-delay: -4s;
+    }
+    circle:nth-child(10) {
+        animation: fc-move 6s  linear infinite;
+        animation-delay: -5s;
+    }
+    circle:nth-child(11) {
+        animation: fc-move 6s  linear infinite;
+        animation-delay: -6s;
+    }
+}
+
+#adm {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#adm.animate {
+    @keyframes adm-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-7.5%, 0, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+
+    circle:nth-child(5) {
+        animation: adm-move 2s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: adm-move 2s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: adm-move 2s  linear infinite;
+        animation-delay: -2s;
+    }
+}
+
+#messhall {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#messhall.animate {
+    @keyframes messhall-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 16.0%, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+
+    circle:nth-child(5) {
+        animation: messhall-move 4s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: messhall-move 4s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: messhall-move 4s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(8) {
+        animation: messhall-move 4s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(9) {
+        animation: messhall-move 4s  linear infinite;
+        animation-delay: -4s;
+    }
+}
+
+#gate {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#gate.animate {
+    @keyframes gate-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 19.8%, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+
+    circle:nth-child(5) {
+        animation: gate-move 4s  linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: gate-move 4s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(7) {
+        animation: gate-move 4s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(8) {
+        animation: gate-move 4s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(9) {
+        animation: gate-move 4s  linear infinite;
+        animation-delay: -4s;
+    }
+}
+
+#log {
+    circle.st3:nth-child(1n + 5) {
+        display: none;
+    }
+}
+
+#log.animate {
+    @keyframes log-move {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 4.2%, 0);
+        }
+    }
+    circle.st3:nth-child(1n + 5) {
+        display: block;
+    }
+
+    circle:nth-child(5) {
+        animation: log-move 1s linear infinite;
+    }
+    circle:nth-child(6) {
+        animation: log-move 1s  linear infinite;
+        animation-delay: -1s;
+    }
+}
+
+#courtyard {
+    circle.st3:nth-child(1n + 7) {
+        display: none;
+    }
+}
+
+#courtyard.animate {
+    @keyframes courtyard-move {
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        30% {
+            transform: translate3d(21.985%, 0, 0);
+        }
+        90% {
+            transform: translate3d(21.985%, -39.4%, 0);
+        }
+        100% {
+            transform: translate3d(16.5%, -39.4%, 0);
+        }
+    }
+
+    circle.st3:nth-child(1n + 7) {
+        display: block;
+    }
+
+    circle:nth-child(7) {
+        animation: courtyard-move 16s linear infinite;
+    }
+    circle:nth-child(8) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -1s;
+    }
+    circle:nth-child(9) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -2s;
+    }
+    circle:nth-child(10) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -3s;
+    }
+    circle:nth-child(11) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -4s;
+    }
+    circle:nth-child(12) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -5s;
+    }
+    circle:nth-child(13) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -6s;
+    }
+    circle:nth-child(14) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -7s;
+    }
+    circle:nth-child(15) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -8s;
+    }
+    circle:nth-child(16) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -9s;
+    }
+    circle:nth-child(17) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -10s;
+    }
+    circle:nth-child(18) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -11s;
+    }
+    circle:nth-child(19) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -12s;
+    }
+    circle:nth-child(20) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -13s;
+    }
+    circle:nth-child(21) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -14s;
+    }
+    circle:nth-child(22) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -15s;
+    }
+    circle:nth-child(23) {
+        animation: courtyard-move 16s  linear infinite;
+        animation-delay: -16s;
+    }
+}
+

@@ -1,0 +1,18 @@
+<ph-form>
+    <ph-button-select [label]="'State'" [(value)]="fluffState" (valueChange)="updateServerFluffState()">
+        <ph-button [value]="'off'">OFF</ph-button>
+        <ph-button [value]="'on'">ON</ph-button>
+    </ph-button-select>
+</ph-form>
+<ph-table [label]="'Recordings'">
+    <tr>
+        <th style="width: 32px;">ID</th>
+        <th>File</th>
+        <th style="width: 64px;">Command</th>
+    </tr>
+    <tr *ngFor="let file of fluffFiles; index as idx">
+        <td>{{idx}}</td>
+        <td>{{file}}</td>
+        <td><ph-button [value]="file" (click)="playAnnoucement(file)">PLAY</ph-button></td>
+    </tr>
+</ph-table>

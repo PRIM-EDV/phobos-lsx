@@ -1,0 +1,12 @@
+<ph-form>
+    <ph-button-select [label]="'State'" [(value)]="powerPlantState" (valueChange)="updateServerPowerGridState()">
+        <ph-button [value]="'offline'">OFFLINE</ph-button>
+        <ph-button [value]="'critical'">CRITICAL</ph-button>
+        <ph-button [value]="'low'">LOW</ph-button>
+        <ph-button [value]="'normal'">NORMAL</ph-button>
+    </ph-button-select>
+    <ph-command-list [label]="'Play Warning'">
+        <ph-button>HEAT</ph-button>
+        <ph-button>PRESSURE</ph-button>
+    </ph-command-list>
+</ph-form>
