@@ -4,8 +4,8 @@ import { jwtDecode } from "jwt-decode";
 import { BackendService } from '../infrastructure/backend.service';
 import { Router } from '@angular/router';
 
-const LSX_SERVER_HOSTNAME = window?.__env?.lsxServerHostname != null ? `${window.__env.lsxServerHostname}` : window.location.hostname;
-const LSX_SERVER_PORT = window?.__env?.lsxServerPort != null ? window.__env.lsxServerPort : window.location.port;
+const LSX_SERVER_HOSTNAME = window?.__env?.LSX_SERVER_HOSTNAME != null ? `${window.__env.LSX_SERVER_HOSTNAME}` : window.location.hostname;
+const LSX_SERVER_PORT = window?.__env?.LSX_SERVER_PORT != null ? window.__env.LSX_SERVER_PORT : window.location.port;
 
 @Injectable(
     {

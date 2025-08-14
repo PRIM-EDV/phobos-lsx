@@ -2,17 +2,21 @@ const { withNativeFederation, shareAll } = require('@angular-architects/native-f
 
 module.exports = withNativeFederation({
 
-  name: 'webapp',
+  name: 'phobos-lsx',
 
   exposes: {
     './Component': './src/app/app.component.ts',
+    './Routes': './src/app/app.routes.ts',
   },
 
   shared: {
-    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto', }),
+    '@phobos/core': { requiredVersion: 'auto', import: '@phobos/core', singleton: true },
   },
 
+
   skip: [
+    '@phobos/elements',
     '@phobos-lsx/protocol',
     // Add further packages you don't need at runtime
   ],
@@ -26,5 +30,5 @@ module.exports = withNativeFederation({
     // get the traditional behavior:
     ignoreUnusedDeps: true
   }
-  
+
 });

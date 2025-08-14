@@ -1,13 +1,14 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Inject, Optional } from '@angular/core';
 import { BackendService } from './infrastructure/backend.service';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { TOKEN_SERVICE_TOKEN, ITokenService } from '@phobos/core';
 
 declare global {
   interface Window {
     __env: {
-      lsxServerHostname: string,
-      lsxServerPort: string
+      LSX_SERVER_HOSTNAME: string,
+      LSX_SERVER_PORT: string
     }
   }
 }
@@ -25,7 +26,9 @@ declare global {
 export class AppComponent implements AfterViewInit{
   
 
-  constructor(private readonly backend: BackendService) {
+  constructor(
+      @Optional() @Inject(TOKEN_SERVICE_TOKEN) private tokenService: ITokenService
+  ) {
 
   }
 
