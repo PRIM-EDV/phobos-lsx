@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { PhElementsModule } from 'lib/phobos-elements/ph-elements.module';
-import { Request } from 'proto/lsx';
-import { PowerDevice, PowerState } from 'proto/lsx.power';
 import { BackendService } from '../infrastructure/backend.service';
+import { PowerDevice, PowerState, Request } from '@phobos-lsx/protocol';
+import { PhButton, PhButtonSelect, PhForm } from '@phobos/elements';
 
 @Component({
-    selector: 'lsx-device-control',
-    imports: [
-        CommonModule,
-        PhElementsModule
-    ],
-    templateUrl: './device-control.component.html',
-    styleUrl: './device-control.component.scss'
+  selector: 'lsx-device-control',
+  imports: [
+      CommonModule,
+      PhButton,
+      PhButtonSelect,
+      PhForm,
+  ],
+  templateUrl: './device-control.component.html',
+  styleUrl: './device-control.component.scss'
 })
 export class DeviceControlComponent {
   public powerDevice = PowerDevice;

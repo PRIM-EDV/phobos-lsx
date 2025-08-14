@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from '../infrastructure/backend.service';
-import { Request, Response } from 'proto/lsx';
+import { Request, Response } from '@phobos-lsx/protocol';
 
 @Injectable({
   providedIn: 'root'

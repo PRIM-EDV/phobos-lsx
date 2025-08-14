@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Request, Response } from 'proto/lsx';
-import { LockdownState } from 'proto/lsx.lockdown';
+import { LockdownState, Request, Response } from '@phobos-lsx/protocol';
 import { BackendService } from '../infrastructure/backend.service';
 
 @Injectable({

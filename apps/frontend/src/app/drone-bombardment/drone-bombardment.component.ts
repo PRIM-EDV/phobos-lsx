@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Request, Response } from 'proto/lsx';
-import { BombAreaState, BombAreaId } from 'proto/lsx.drone';
 import { BackendService } from '../infrastructure/backend.service';
 import { DroneBombardmentService } from './drone-bombardment.service';
+import { BombAreaId, BombAreaState, Request } from '@phobos-lsx/protocol';
 
 @Component({
     selector: 'drone-bombardment',
     templateUrl: './drone-bombardment.component.html',
     styleUrls: ['./drone-bombardment.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class DroneBombardmentComponent implements OnInit {
 

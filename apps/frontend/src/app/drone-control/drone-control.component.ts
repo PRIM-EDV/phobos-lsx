@@ -1,14 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Request, Response } from 'proto/lsx';
+import { PhButton, PhButtonSelect, PhCommandList, PhForm, PhTable } from '@phobos/elements';
+import { BombAreaId, ModeSilentState, Request } from '@phobos-lsx/protocol';
 import { BackendService } from '../infrastructure/backend.service';
 import { DroneCotrolService } from './drone-control.service';
-import { BombArea, BombAreaId, ModeSilentState } from 'proto/lsx.drone';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'drone-control',
+    imports: [
+      CommonModule,
+      PhButton,
+      PhButtonSelect,
+      PhCommandList,
+      PhForm,
+      PhTable
+    ],
     templateUrl: './drone-control.component.html',
     styleUrls: ['./drone-control.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class DroneControlComponent implements OnInit {
 

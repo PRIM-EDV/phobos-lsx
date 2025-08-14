@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { LockdownState } from 'proto/lsx.lockdown';
 import { BackendService } from '../infrastructure/backend.service';
-import { Request } from 'proto/lsx';
+import { Request, LockdownState } from '@phobos-lsx/protocol';
 import { BaseLockdownService } from './base-lockdown.service';
+import { PhButton, PhButtonSelect, PhForm } from '@phobos/elements';
 
 @Component({
     selector: 'base-lockdown',
+    imports: [
+      PhButton,
+      PhButtonSelect,
+      PhForm,
+    ],
     templateUrl: './base-lockdown.component.html',
     styleUrls: ['./base-lockdown.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class BaseLockdownComponent implements OnInit {
 

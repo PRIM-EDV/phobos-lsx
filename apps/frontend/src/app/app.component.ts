@@ -1,5 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { BackendService } from './infrastructure/backend.service';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 declare global {
   interface Window {
@@ -12,6 +14,10 @@ declare global {
 
 @Component({
     selector: 'app-root',
+    imports: [
+      CommonModule,
+      RouterOutlet
+    ],
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss'],
     standalone: true

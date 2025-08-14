@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Request, Response } from 'proto/lsx';
 import { BackendService } from '../infrastructure/backend.service';
-import { BombAreaState, BombArea, BombAreaId, ModeSilentState } from 'proto/lsx.drone';
+import { BombAreaId, BombAreaState, Request, Response } from '@phobos-lsx/protocol';
 
 @Injectable({
   providedIn: 'root'

@@ -1,13 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { Request } from '@phobos-lsx/protocol';
 import { BackendService } from '../infrastructure/backend.service';
-import { Request } from 'proto/lsx';
 import { AuthService } from '../auth/auth.service';
+import { PhButton, PhTable } from '@phobos/elements';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'speaker-announcements',
+    imports: [
+      CommonModule,
+      PhButton,
+      PhTable
+    ],
     templateUrl: './speaker-announcements.component.html',
     styleUrls: ['./speaker-announcements.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class SpeakerAnnouncementsComponent implements OnInit {
 

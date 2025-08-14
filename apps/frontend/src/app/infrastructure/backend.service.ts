@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Subject } from "rxjs";
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
-import { LsxMessage, Request, Response, Error } from "proto/lsx";
+import { LsxMessage, Request, Response, Error } from '@phobos-lsx/protocol'
 import { Router } from "@angular/router";
 
 const LSX_SERVER_HOSTNAME = window?.__env?.lsxServerHostname != null ? `${window.__env.lsxServerHostname}` : window.location.hostname;

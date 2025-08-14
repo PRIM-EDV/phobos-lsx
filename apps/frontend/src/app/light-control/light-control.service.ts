@@ -1,10 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BackendService } from "../infrastructure/backend.service";
 import { Light } from "./light-control.component";
-import { LightDMXState, LightId, LightSwitchState, SetLightDmxState_Request, SetLightLockState_Request, SetLightPowerState_Request, SetLightSwitchState_Request } from "proto/lsx.light";
-import { LockState } from "proto/lsx.common";
-import { PowerState } from "proto/lsx.power";
-import { Request } from "proto/lsx";
+import { PowerState, LockState, LightId, LightDMXState, LightSwitchState, Request, Response, SetLightDmxState_Request, SetLightLockState_Request, SetLightPowerState_Request, SetLightSwitchState_Request } from "@phobos-lsx/protocol";
 
 @Injectable({
     providedIn: 'root'

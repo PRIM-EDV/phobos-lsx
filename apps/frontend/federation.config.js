@@ -17,6 +17,7 @@ module.exports = withNativeFederation({
     'rxjs/fetch',
     'rxjs/testing',
     'rxjs/webSocket',
+    '@phobos-lsx/protocol',
     // Add further packages you don't need at runtime
   ],
 

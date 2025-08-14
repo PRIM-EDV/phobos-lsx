@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Request, Response } from 'proto/lsx';
-import { PowerPlantState } from 'proto/lsx.power';
 import { BackendService } from '../infrastructure/backend.service';
 import { PowerPlantService } from './power-plant.service';
+import { PowerPlantState, Request } from '@phobos-lsx/protocol';
+import { PhButton, PhButtonSelect, PhCommandList, PhForm } from '@phobos/elements';
 
 @Component({
     selector: 'app-power-plant',
+    imports: [
+      PhCommandList,
+      PhButton,
+      PhButtonSelect,
+      PhForm
+    ],
     templateUrl: './power-plant.component.html',
     styleUrls: ['./power-plant.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class PowerPlantComponent implements OnInit {
 

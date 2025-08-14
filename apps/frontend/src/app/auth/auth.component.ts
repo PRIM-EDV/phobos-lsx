@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackendService } from '../infrastructure/backend.service';
 import { AuthService } from './auth.service';
+import { CommonModule } from '@angular/common';
+import { PhButton, PhButtonList, PhForm, PhInput, PhWindow } from '@phobos/elements';
 
 @Component({
     selector: 'app-auth',
+    imports: [
+      CommonModule,
+      PhButton,
+      PhInput,
+      PhWindow,
+      PhForm,
+      PhButtonList
+    ],
     templateUrl: './auth.component.html',
     styleUrls: ['./auth.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class AuthComponent implements OnInit {
 

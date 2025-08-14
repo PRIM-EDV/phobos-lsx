@@ -1,30 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { PhElementsModule } from 'lib/phobos-elements/ph-elements.module';
-import { LockState } from 'proto/lsx.common';
-import { GetLightDmxState_Response, GetLightLockState_Response, GetLightMode_Response, GetLightPowerState_Response, GetLightSwitchState_Response, LightDMXState, LightId, LightMode, LightSwitchState } from 'proto/lsx.light';
-import { PowerState } from 'proto/lsx.power';
 import { BackendService } from '../infrastructure/backend.service';
 import { LightControlService } from './light-control.service';
-import { Request } from 'proto/lsx';
+import { LightId, LightDMXState, LightSwitchState, PowerState, LockState, GetLightDmxState_Response, GetLightPowerState_Response, GetLightSwitchState_Response, GetLightLockState_Response, LightMode, GetLightMode_Response, Request, Response } from '@phobos-lsx/protocol';
+import { PhButton, PhButtonSelect, PhForm, PhGroup } from '@phobos/elements';
 
-export interface Light { 
-    id: LightId;
-    label: string;
-    dmxState: LightDMXState;
-    switchState: LightSwitchState;
-    powerState: PowerState;
-    lockState: LockState
+
+export interface Light {
+  id: LightId;
+  label: string;
+  dmxState: LightDMXState;
+  switchState: LightSwitchState;
+  powerState: PowerState;
+  lockState: LockState
 }
 
 @Component({
-    selector: 'lsx-light-control',
-    imports: [
-        CommonModule,
-        PhElementsModule
-    ],
-    templateUrl: './light-control.component.html',
-    styleUrl: './light-control.component.scss'
+  selector: 'lsx-light-control',
+  imports: [
+    CommonModule,
+    PhForm,
+    PhGroup,
+    PhButton,
+    PhButtonSelect
+  ],
+  templateUrl: './light-control.component.html',
+  styleUrl: './light-control.component.scss'
 })
 export class LightControlComponent {
   public lightSwitchState = LightSwitchState;
@@ -35,7 +36,7 @@ export class LightControlComponent {
   constructor(
     private readonly backend: BackendService,
     public readonly service: LightControlService
-  ){
+  ) {
     this.backend.onOpen.subscribe(() => {
       this.service.lights.forEach(async (light) => {
         light.dmxState = await this.getLightDMXState(light.id);
@@ -45,7 +46,7 @@ export class LightControlComponent {
       });
     });
   }
-    
+
   public async onLightSwitchStateChange(id: LightId, state: LightSwitchState) {
     const req: Request = {
       setLightSwitchState: {
@@ -53,7 +54,7 @@ export class LightControlComponent {
         state: state
       }
     }
-    
+
     await this.backend.request(req);
   }
 

@@ -1,13 +1,22 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../infrastructure/backend.service';
 import { SpeakerFluffService } from './speaker-fluff.service';
-import { Request } from 'proto/lsx';
+import { Request } from '@phobos-lsx/protocol';
+import { PhButton, PhButtonSelect, PhForm, PhTable } from '@phobos/elements';
 
 @Component({
     selector: 'speaker-fluff',
+    imports: [
+      CommonModule,
+      PhButton,
+      PhButtonSelect,
+      PhForm,
+      PhTable
+    ],
     templateUrl: './speaker-fluff.component.html',
     styleUrls: ['./speaker-fluff.component.scss'],
-    standalone: false
+    standalone: true
 })
 export class SpeakerFluffComponent implements OnInit {
 
