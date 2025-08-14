@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LockdownState } from 'proto/lsx.lockdown';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { Request } from 'proto/lsx';
 import { BaseLockdownService } from './base-lockdown.service';
 

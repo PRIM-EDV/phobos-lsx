@@ -1,12 +1,15 @@
 {
 	"$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-	"cli": {
-		"analytics": "612bf326-2294-40bf-8e61-1020b155223b"
-	},
 	"version": 1,
 	"newProjectRoot": "projects",
+	"cli": {
+		"cache": {
+			"enabled": false
+    },
+    "analytics": false
+	},
 	"projects": {
-		"webapp": {
+		"phobos-lsx": {
 			"projectType": "application",
 			"schematics": {
 				"@schematics/angular:component": {
@@ -30,26 +33,27 @@
 				"@schematics/angular:pipe": {
 					"skipTests": true
 				},
-				"@schematics/angular:service": {
+				"@schematics/angular:resolver": {
 					"skipTests": true
 				},
-				"@schematics/angular:application": {
-					"strict": true
+				"@schematics/angular:service": {
+					"skipTests": true
 				}
 			},
 			"root": "",
 			"sourceRoot": "src",
-			"prefix": "",
+			"prefix": "app",
 			"architect": {
 				"build": {
 					"builder": "@angular-architects/native-federation:build",
-					"options": {},
+					"options": {
+					},
 					"configurations": {
 						"production": {
-							"target": "webapp:esbuild:production"
+							"target": "phobos-lsx:esbuild:production"
 						},
 						"development": {
-							"target": "webapp:esbuild:development",
+							"target": "phobos-lsx:esbuild:development",
 							"dev": true
 						}
 					},
@@ -58,59 +62,62 @@
 				"serve": {
 					"builder": "@angular-architects/native-federation:build",
 					"options": {
-						"target": "webapp:serve-original:development",
+						"target": "phobos-lsx:serve-original:development",
 						"rebuildDelay": 0,
 						"dev": true,
 						"port": 0
+						},
+					"configurations": {
+						"development": {
+							"target": "phobos-lsx:serve-original:development"
+						},
+						"production": {
+							"target": "phobos-lsx:serve-original:production"
+						}
 					}
 				},
 				"extract-i18n": {
-					"builder": "@angular/build:extract-i18n",
-					"options": {
-						"buildTarget": "webapp:build"
-					}
+					"builder": "@angular-devkit/build-angular:extract-i18n"
 				},
 				"esbuild": {
-					"builder": "@angular/build:application",
+					"builder": "@angular-devkit/build-angular:application",
 					"options": {
-						"outputPath": {
-							"base": "dist/webapp"
-						},
+						"outputPath": "dist/phobos-lsx",
 						"index": "src/index.html",
+						"browser": "src/main.ts",
 						"polyfills": [
-							"src/polyfills.ts",
+							"zone.js",
 							"es-module-shims"
 						],
 						"tsConfig": "tsconfig.app.json",
 						"inlineStyleLanguage": "scss",
 						"assets": [
-							"src/favicon.ico",
-							"src/assets"
+							{
+								"glob": "**/*",
+								"input": "public"
+							},
+							{
+								"glob": "**/*",
+								"input": "node_modules/@trx/dist/assets"
+							}
 						],
 						"styles": [
 							"src/styles.scss"
 						],
-						"scripts": [],
-						"browser": "src/main.ts"
+						"scripts": []
 					},
 					"configurations": {
 						"production": {
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "500kb",
-									"maximumError": "1mb"
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
 								},
 								{
 									"type": "anyComponentStyle",
-									"maximumWarning": "16kb",
-									"maximumError": "16kb"
-								}
-							],
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.prod.ts"
+									"maximumWarning": "4kB",
+									"maximumError": "8kB"
 								}
 							],
 							"outputHashing": "all"
@@ -119,53 +126,35 @@
 							"optimization": false,
 							"extractLicenses": false,
 							"sourceMap": true,
-							"namedChunks": true
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.development.ts"
+								}
+							]
 						}
 					},
 					"defaultConfiguration": "production"
 				},
 				"serve-original": {
-					"builder": "@angular/build:dev-server",
+					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
 						"production": {
-							"buildTarget": "webapp:esbuild:production"
+							"buildTarget": "phobos-lsx:esbuild:production"
 						},
 						"development": {
-							"buildTarget": "webapp:esbuild:development"
+							"buildTarget": "phobos-lsx:esbuild:development"
 						}
 					},
 					"defaultConfiguration": "development",
 					"options": {
-						"port": 3005
+						"port": 3005,
+						"host": "0.0.0.0",
+						"poll": 500,
+						"watch": true
 					}
 				}
 			}
-		}
-	},
-	"schematics": {
-		"@schematics/angular:component": {
-			"type": "component"
-		},
-		"@schematics/angular:directive": {
-			"type": "directive"
-		},
-		"@schematics/angular:service": {
-			"type": "service"
-		},
-		"@schematics/angular:guard": {
-			"typeSeparator": "."
-		},
-		"@schematics/angular:interceptor": {
-			"typeSeparator": "."
-		},
-		"@schematics/angular:module": {
-			"typeSeparator": "."
-		},
-		"@schematics/angular:pipe": {
-			"typeSeparator": "."
-		},
-		"@schematics/angular:resolver": {
-			"typeSeparator": "."
 		}
 	}
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { Request, Response } from 'proto/lsx';
 
 @Injectable({

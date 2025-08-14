@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { PhElementsModule } from 'lib/phobos-elements/ph-elements.module';
 import { Request } from 'proto/lsx';
 import { PowerDevice, PowerState } from 'proto/lsx.power';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 
 @Component({
     selector: 'lsx-device-control',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Request, Response } from 'proto/lsx';
 import { BombAreaState, BombAreaId } from 'proto/lsx.drone';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { DroneBombardmentService } from './drone-bombardment.service';
 
 @Component({

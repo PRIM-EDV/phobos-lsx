@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Request, Response } from 'proto/lsx';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { PowerControlService } from './power-grid.service';
 
 @Component({

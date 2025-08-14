@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Request, Response } from 'proto/lsx';
 import { PowerPlantState } from 'proto/lsx.power';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 
 @Injectable({
   providedIn: 'root'

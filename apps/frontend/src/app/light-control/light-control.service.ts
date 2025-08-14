@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BackendService } from "../backend/backend.service";
+import { BackendService } from "../infrastructure/backend.service";
 import { Light } from "./light-control.component";
 import { LightDMXState, LightId, LightSwitchState, SetLightDmxState_Request, SetLightLockState_Request, SetLightPowerState_Request, SetLightSwitchState_Request } from "proto/lsx.light";
 import { LockState } from "proto/lsx.common";

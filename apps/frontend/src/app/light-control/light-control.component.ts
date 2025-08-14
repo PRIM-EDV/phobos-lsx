@@ -4,7 +4,7 @@ import { PhElementsModule } from 'lib/phobos-elements/ph-elements.module';
 import { LockState } from 'proto/lsx.common';
 import { GetLightDmxState_Response, GetLightLockState_Response, GetLightMode_Response, GetLightPowerState_Response, GetLightSwitchState_Response, LightDMXState, LightId, LightMode, LightSwitchState } from 'proto/lsx.light';
 import { PowerState } from 'proto/lsx.power';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { LightControlService } from './light-control.service';
 import { Request } from 'proto/lsx';
 

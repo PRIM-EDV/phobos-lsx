@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Request, Response } from 'proto/lsx';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { BombAreaState, BombArea, BombAreaId, ModeSilentState } from 'proto/lsx.drone';
 
 @Injectable({

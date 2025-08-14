@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../infrastructure/backend.service';
 import { SpeakerFluffService } from './speaker-fluff.service';
 import { Request } from 'proto/lsx';
 
