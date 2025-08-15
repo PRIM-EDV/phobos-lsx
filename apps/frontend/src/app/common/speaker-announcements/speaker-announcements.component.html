@@ -1,0 +1,15 @@
+<ph-table [label]="'Recordings'">
+  <tr>
+    <th style="width: 32px;">ID</th>
+    <th>File</th>
+    <th style="width: 64px;">Command</th>
+  </tr>
+  @for(file of service.announcementFiles(); track file; let idx = $index)
+  {
+  <tr>
+    <td>{{idx}}</td>
+    <!-- <td [ngClass]="{'crossed': file == 'fluff-medizin-apfel-rabe.wav'}">{{file}}</td> -->
+    <td><ph-button [value]="file" (click)="rpc.playAnnoucement(file)">PLAY</ph-button></td>
+  </tr>
+  }
+</ph-table>
