@@ -1,5 +1,4 @@
 import { UseGuards } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
 import { GetLightSwitchState_Request, GetLightSwitchState_Response, SetLightSwitchState_Request, LockState, GetLightLockState_Response, SetLightLockState_Request, GetLightDmxState_Request, GetLightDmxState_Response, SetLightDmxState_Request, SetLightPowerState_Request } from "@phobos-lsx/protocol";
 
 import { AppGateway } from "src/app/app.gateway";
@@ -9,13 +8,14 @@ import { Ws } from "src/app/common/interfaces/ws";
 import { LightService } from "src/app/core/light/light.service";
 import { RpcHandler, Rpc } from "lib/rpc/decorators";
 
+import * as jose from 'jose'
+
 
 @RpcHandler(AppGateway)
 @UseGuards(RolesGuard)
 export class LightApiController {
     constructor(
         private readonly gateway: AppGateway,
-        private readonly jwtService: JwtService, 
         private readonly light: LightService
     ) { }
 
@@ -32,8 +32,8 @@ export class LightApiController {
     @Rpc()
     @Roles(['admin', 'tec'])
     public async setLightSwitchState(client: Ws, req: SetLightSwitchState_Request) {
-        const payload = await this.jwtService.decode(client.token);
-        if (payload.role !== 'admin' && this.light.getLightLockState(req.id) === LockState.LOCK_STATE_LOCKED) {
+        const payload = jose.decodeJwt(client.token);
+        if (payload.scope !== 'admin' && this.light.getLightLockState(req.id) === LockState.LOCK_STATE_LOCKED) {
             const state = this.light.getLightSwitchState(req.id);
 
             throw new Error('Light is locked');
@@ -72,7 +72,6 @@ export class LightApiController {
 
     @Rpc()
     @Roles(['admin'])
-
     public async setLightDmxState(client: Ws, req: SetLightDmxState_Request) {
         this.light.setLightDMXState(req.id, req.state);
 
@@ -81,10 +80,9 @@ export class LightApiController {
 
     @Rpc()
     @Roles(['admin', 'tec'])
-
     public async setLightPowerState(client: Ws, req: SetLightPowerState_Request) {
-        const payload = await this.jwtService.decode(client.token);
-        if (payload.role !== 'admin' && this.light.getLightLockState(req.id) === LockState.LOCK_STATE_LOCKED) {
+        const payload = jose.decodeJwt(client.token);
+        if (payload.scope !== 'admin' && this.light.getLightLockState(req.id) === LockState.LOCK_STATE_LOCKED) {
             const state = this.light.getLightPowerState(req.id);
 
             throw new Error('Light is locked');

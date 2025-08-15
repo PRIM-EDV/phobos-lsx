@@ -1,5 +1,4 @@
 import { Controller, UnauthorizedException, UseGuards } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
 import { GetLightPowerState_Request, GetLightPowerState_Response, SetLightPowerState_Request, LockState, GetDevicePowerState_Request, GetDevicePowerState_Response, SetDevicePowerState_Request, PowerDevice, LightId, PowerState } from "@phobos-lsx/protocol";
 
 import { AppGateway } from "src/app/app.gateway";
@@ -11,6 +10,7 @@ import { DeviceService } from "src/app/core/device/device.service";
 import { Lightline } from "src/app/core/light/lightline/lightline";
 import { RpcHandler, Rpc } from "lib/rpc/decorators";
 
+import * as jose from 'jose';
 
 @Controller('api/power')
 @RpcHandler(AppGateway)
@@ -20,7 +20,6 @@ export class PowerApiController {
         private readonly gateway: AppGateway, 
         private readonly light: LightService,
         private readonly device: DeviceService,
-        private readonly jwtService: JwtService
     ) {
 
     }
@@ -37,11 +36,11 @@ export class PowerApiController {
     @Rpc()
     @Roles(['admin', 'tec'])
     public async setLightPowerState(client: Ws, req: SetLightPowerState_Request) {
-        const payload = await this.jwtService.decode(client.token);
+        const payload = jose.decodeJwt(client.token);
         const lock = this.light.getLightLockState(req.id);
 
-        if (payload.role === 'tec' && lock == LockState.LOCK_STATE_LOCKED) {
-            throw UnauthorizedException;
+        if (payload.scope === 'tec' && lock == LockState.LOCK_STATE_LOCKED) {
+            throw new UnauthorizedException();
         } 
 
         this.light.setPowerState(req.id, req.state);

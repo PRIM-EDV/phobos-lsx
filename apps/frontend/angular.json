@@ -151,7 +151,11 @@
 						"port": 3005,
 						"host": "0.0.0.0",
 						"poll": 500,
-						"watch": true
+						"watch": true,
+						"allowedHosts": [
+							"host.docker.internal"
+						],
+						"proxyConfig": "src/proxy.conf.json"
 					}
 				}
 			}

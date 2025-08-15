@@ -12,7 +12,7 @@
 
     <div class="content">
         <div class="workspace">
-            <ph-window *ngIf="this.tab == 'GNRL'" [title]="'POWER PLANT'" [subtitle]="'TR2805'" style="grid-row:1/5; grid-column: 1/38">
+            <!-- <ph-window *ngIf="this.tab == 'GNRL'" [title]="'POWER PLANT'" [subtitle]="'TR2805'" style="grid-row:1/5; grid-column: 1/38">
                 <app-power-plant></app-power-plant>
             </ph-window>
             <ph-window *ngIf="this.tab == 'GNRL'" [title]="'BASE DEVICE POWER'" [subtitle]="'GRD8015'" style="grid-row:5/12; grid-column: 1/38">
@@ -26,7 +26,7 @@
             </ph-window>
             <ph-window *ngIf="auth.role == 'admin' && this.tab == 'GNRL'" [title]="'ANNOUNCEMENT'" [subtitle]="'TR2805'" style="grid-row:6/19; grid-column: 38/58">
                 <speaker-announcements></speaker-announcements>
-            </ph-window>
+            </ph-window> -->
             <ph-window *ngIf="auth.role == 'tec' && this.tab == 'GNRL'" [title]="'ANNOUNCEMENT'" [subtitle]="'TR2805'" style="grid-row:1/11; grid-column: 38/58">
                 <speaker-announcements></speaker-announcements>
             </ph-window>

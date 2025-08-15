@@ -8,7 +8,7 @@
   {
   <tr>
     <td>{{idx}}</td>
-    <!-- <td [ngClass]="{'crossed': file == 'fluff-medizin-apfel-rabe.wav'}">{{file}}</td> -->
+    <td [ngClass]="{'crossed': file == 'fluff-medizin-apfel-rabe.wav'}">{{file}}</td>
     <td><ph-button [value]="file" (click)="rpc.playAnnoucement(file)">PLAY</ph-button></td>
   </tr>
   }

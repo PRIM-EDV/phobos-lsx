@@ -1,14 +1,15 @@
 import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
 import { Ws } from '../interfaces/ws';
 import { ROLES_METADATA } from '../constants';
+
+import * as jose from 'jose';
 
 /**
  * Guard that checks if the client is authorized to access the resource based on a JWT.
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(private jwtService: JwtService) {}
+  constructor() {}
 
   /**
    * Determines whether the client is authorized to access the resource.
@@ -29,7 +30,7 @@ export class RolesGuard implements CanActivate {
     } 
 
     try {
-      const payload = await this.jwtService.decode(token);
+      const payload = jose.decodeJwt<{ scope?: string } & jose.JWTPayload>(token);
 
       if (!roles.includes(payload.scope)) {
         return false;

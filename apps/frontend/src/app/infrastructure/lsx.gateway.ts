@@ -8,7 +8,7 @@ const LSX_SERVER_HOSTNAME = window?.__env?.LSX_SERVER_HOSTNAME || window.locatio
 const LSX_SERVER_PORT = window?.__env?.LSX_SERVER_PORT || 3005;
 
 const WS_PROTOCOL = window.location.protocol === 'https:' ? 'wss' : 'ws';
-const WS_URL = `${WS_PROTOCOL}://${LSX_SERVER_HOSTNAME}:${LSX_SERVER_PORT}`;
+const WS_URL = `${WS_PROTOCOL}://${LSX_SERVER_HOSTNAME}:${LSX_SERVER_PORT}/api`;
 
 @Injectable(
     { providedIn: 'root' }
@@ -27,6 +27,7 @@ export class LsxGateway {
     constructor() {}
 
     public async connect(jwt: string) {
+        console.log(`Connecting to Lsx Gateway: ${WS_URL}?token=${jwt}`);
         this.ws = webSocket({url: `${WS_URL}?token=${jwt}`, openObserver: { 
             next: () => { 
                 this.isConnected.set(true); 

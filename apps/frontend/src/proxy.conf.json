@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "ws://localhost:4005",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  }
+}
