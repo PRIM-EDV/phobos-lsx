@@ -87,9 +87,9 @@ export class PowerApiController {
                 lightLine.update().then().catch(console.error);
             }
 
-        } else {
-            this.device.setPowerState(req.device, req.state);
-        }
+        } 
+
+        this.device.setPowerState(req.device, req.state);
         this.gateway.requestAllButOne(client.id, { setDevicePowerState: req }).then();
     }
 

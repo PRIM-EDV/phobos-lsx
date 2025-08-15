@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { DeviceControlComponent } from '../device-control/device-control.component';
 
 import { PhSidebar, PhSidebarItem, PhTopbar, PhTopbarHeader, PhTopbarItem, PhWindow } from '@phobos/elements';
 import { DroneControlComponent } from '../drone-control/drone-control.component';
@@ -21,7 +20,6 @@ import { SpeakerAnnouncementsComponent } from '../common/speaker-announcements/s
       SpeakerFluffComponent,
       DroneBombardmentComponent,
       DroneControlComponent,
-      DeviceControlComponent,
       PhSidebar,
       PhSidebarItem,
       PhTopbar,

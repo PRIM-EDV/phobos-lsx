@@ -1,21 +1,21 @@
 <ph-form>
-    <ph-button-select [label]="'MAPTOOL'" [(value)]="maptoolPowerState" (valueChange)="onMaptoolPowerStateChange($event)">
+    <ph-button-select [label]="'MAPTOOL'" [value]="service.maptoolPowerState()" (valueChange)="updatePowerState(powerDevice.DEVICE_CIC_MAPTOOL, $event)">
         <ph-button [value]="powerState.POWER_STATE_POWERED">POWERED</ph-button>
         <ph-button [value]="powerState.POWER_STATE_UNPOWERED">UNPOWERED</ph-button>
     </ph-button-select>
-    <ph-button-select [label]="'BASETOOL'" [(value)]="basetoolPowerState" (valueChange)="onBasetoolPowerStateChange($event)">
+    <ph-button-select [label]="'BASETOOL'" [value]="service.basetoolPowerState()" (valueChange)="updatePowerState(powerDevice.DEVICE_ADM_BASETOOL, $event)">
         <ph-button [value]="powerState.POWER_STATE_POWERED">POWERED</ph-button>
         <ph-button [value]="powerState.POWER_STATE_UNPOWERED">UNPOWERED</ph-button>
     </ph-button-select>
-    <ph-button-select [label]="'CIC COFFEE MACHINE'" [(value)]="cicCoffee" (valueChange)="onLightDevicePowerStateChange(powerDevice.DEVICE_CIC_COFFEE, $event)">
+    <ph-button-select [label]="'CIC COFFEE MACHINE'" [value]="service.cicCoffee()" (valueChange)="updatePowerState(powerDevice.DEVICE_CIC_COFFEE, $event)">
         <ph-button [value]="powerState.POWER_STATE_POWERED">POWERED</ph-button>
         <ph-button [value]="powerState.POWER_STATE_UNPOWERED">UNPOWERED</ph-button>
     </ph-button-select>
-    <ph-button-select [label]="'IRD RAPIDCARE'" [(value)]="sciRapidCare" (valueChange)="onLightDevicePowerStateChange(powerDevice.DEVICE_IRD_RAPIDCARE, $event)">
+    <ph-button-select [label]="'IRD RAPIDCARE'" [value]="service.sciRapidCare()" (valueChange)="updatePowerState(powerDevice.DEVICE_IRD_RAPIDCARE, $event)">
         <ph-button [value]="powerState.POWER_STATE_POWERED">POWERED</ph-button>
         <ph-button [value]="powerState.POWER_STATE_UNPOWERED">UNPOWERED</ph-button>
     </ph-button-select>
-    <ph-button-select [label]="'MED OP'" [(value)]="medOpRapidCare" (valueChange)="onLightDevicePowerStateChange(powerDevice.DEVICE_MED_OP_ROOM, $event)">
+    <ph-button-select [label]="'MED OP'" [value]="service.medOpRapidCare()" (valueChange)="updatePowerState(powerDevice.DEVICE_MED_OP_ROOM, $event)">
         <ph-button [value]="powerState.POWER_STATE_POWERED">POWERED</ph-button>
         <ph-button [value]="powerState.POWER_STATE_UNPOWERED">UNPOWERED</ph-button>
     </ph-button-select>

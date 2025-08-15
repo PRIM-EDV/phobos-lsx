@@ -27,7 +27,6 @@ export class LsxGateway {
     constructor() {}
 
     public async connect(jwt: string) {
-        console.log(`Connecting to Lsx Gateway: ${WS_URL}?token=${jwt}`);
         this.ws = webSocket({url: `${WS_URL}?token=${jwt}`, openObserver: { 
             next: () => { 
                 this.isConnected.set(true); 
@@ -64,7 +63,6 @@ export class LsxGateway {
 
     private handleMessage(buffer: {event: 'msg', data: string}) {
         const msg = LsxMessage.fromJSON(JSON.parse(buffer.data));
-        console.log('MaptoolGateway: Received message', msg);
         if(msg.request) {
             this.onRequest.next({id: msg.id, request: msg.request});
         }
