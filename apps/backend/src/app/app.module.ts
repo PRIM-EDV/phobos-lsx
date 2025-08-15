@@ -18,6 +18,7 @@ import { SoundModule } from './core/sound/sound.module';
 import { AudioService } from './platform/audio/audio.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { DeviceModule } from './core/device/device.module';
+import { WinstonLoggerModule } from './infrastructure/logger/winston/winston.logger.module';
 
 @Global()
 @Module({
@@ -37,7 +38,8 @@ import { DeviceModule } from './core/device/device.module';
     DroneModule,
     QlcModule,
     LightModule,
-    DeviceModule
+    DeviceModule,
+    WinstonLoggerModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppGateway, AudioService],
