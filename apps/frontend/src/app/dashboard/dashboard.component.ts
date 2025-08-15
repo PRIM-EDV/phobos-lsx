@@ -6,7 +6,7 @@ import { LightControlComponent } from '../light-control/light-control.component'
 
 import { PhSidebar, PhSidebarItem, PhTopbar, PhTopbarHeader, PhTopbarItem, PhWindow } from '@phobos/elements';
 import { DroneControlComponent } from '../drone-control/drone-control.component';
-import { SpeakerFluffComponent } from '../speaker-fluff/speaker-fluff.component';
+import { SpeakerFluffComponent } from '../common/speaker-fluff/speaker-fluff.component';
 import { PowerPlantComponent } from '../power-plant/power-plant.component';
 import { BaseLockdownComponent } from '../base-lockdown/base-lockdown.component';
 import { DroneBombardmentComponent } from '../drone-bombardment/drone-bombardment.component';

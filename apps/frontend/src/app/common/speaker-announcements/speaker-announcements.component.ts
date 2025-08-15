@@ -9,8 +9,7 @@ import { SpeakerAnnouncementsService } from './speaker.announcements.service';
     imports: [
     CommonModule,
     PhButton,
-    PhTable,
-    PhWindow
+    PhTable
 ],
     templateUrl: './speaker-announcements.component.html',
     styleUrls: ['./speaker-announcements.component.scss'],

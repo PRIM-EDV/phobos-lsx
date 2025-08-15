@@ -11,13 +11,11 @@ export class SpeakerAnnouncementsService {
 
   announcementFilesInit = effect(async () => {
     if (this.gateway.isConnected()) {
-      console.log("?")
       const announcementFiles = await this.rpc.getAnnouncementFiles();
       this.announcementFiles.set(announcementFiles);
     }
   });
 
   constructor(private readonly gateway: LsxGateway, private readonly rpc: SpeakerAnnouncementsRpcAdapter) { 
-    console.log("SpeakerAnnouncementsService initialized");
   }
 }

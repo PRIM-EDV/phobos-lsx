@@ -11,7 +11,7 @@ import { PowerPlantComponent } from "../power-plant/power-plant.component";
 import { SpeakerFluffComponent } from "../common/speaker-fluff/speaker-fluff.component";
 
 @Component({
-    selector: 'app-general',
+    selector: 'app-orga',
     imports: [
       CommonModule,
       BaseLockdownComponent,
@@ -24,9 +24,9 @@ import { SpeakerFluffComponent } from "../common/speaker-fluff/speaker-fluff.com
       DeviceControlComponent,
       PhWindow
     ],
-    templateUrl: './general.component.html',
-    styleUrls: ['./general.component.scss']
+    templateUrl: './orga.component.html',
+    styleUrls: ['./orga.component.scss']
 })
-export class GeneralComponent {
+export class OrgaComponent {
 
 }
