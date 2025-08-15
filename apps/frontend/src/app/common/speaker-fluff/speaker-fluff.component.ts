@@ -6,6 +6,7 @@ import { Request } from '@phobos-lsx/protocol';
 import { PhButton, PhButtonSelect, PhForm, PhTable } from '@phobos/elements';
 import { SpeakerAnnouncementsRpcAdapter } from '../speaker-announcements/rpc/speaker-annoucements.rpc.adapter';
 import { SpeakerFluffRpcAdapter } from './rpc/speaker-fluff.rpc.adapter';
+import { SpeakerFluffApiService } from './api/speaker-fluff.api.service';
 
 @Component({
   selector: 'speaker-fluff',
@@ -24,7 +25,8 @@ export class SpeakerFluffComponent {
 
   constructor(
     public readonly rpc: SpeakerFluffRpcAdapter,
-    public readonly service: SpeakerFluffService
+    public readonly service: SpeakerFluffService,
+    private readonly api: SpeakerFluffApiService
   ) {
 
   };

@@ -6,8 +6,9 @@ import { Subscription } from "rxjs";
 import { LsxGateway } from "../lsx.gateway";
 
 export class LsxRequestHandler {
+  protected gateway: LsxGateway = inject(LsxGateway);
+
   private onRequestSubscription?: Subscription;
-  private gateway: LsxGateway = inject(LsxGateway);
 
   constructor() {
     this.onRequestSubscription = this.gateway.onRequest.subscribe(this.handleRequest.bind(this));
