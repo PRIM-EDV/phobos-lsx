@@ -1,24 +1,30 @@
 <ph-form>
-    <ph-group [label]="light.label" *ngFor="let light of this.service.lights">
-        <ph-button-select [label]="'Switch'" [(value)]="light.switchState" (valueChange)="onLightSwitchStateChange(light.id, $event)">
+    @for(light of service.lights(); track light; let idx = $index) {
+    <ph-group [label]="light.label">
+        <ph-button-select [label]="'Switch'" [value]="light.switchState"
+            (valueChange)="updateLightSwitchState(light.id, $event)">
             <ph-button [value]="lightSwitchState.SWITCH_STATE_OFF">OFF</ph-button>
             <ph-button [value]="lightSwitchState.SWITCH_STATE_ON">ON</ph-button>
         </ph-button-select>
-        <ph-button-select [label]="'Lock'" [(value)]="light.lockState" (valueChange)="onLightLockStateChange(light.id, $event)">
+        <ph-button-select [label]="'Lock'" [(value)]="light.lockState"
+            (valueChange)="updateLightLockState(light.id, $event)">
             <ph-button [value]="lightLockState.LOCK_STATE_UNLOCKED">OFF</ph-button>
             <ph-button [value]="lightLockState.LOCK_STATE_LOCKED">ON</ph-button>
         </ph-button-select>
-        <ph-button-select [label]="'Power'" [(value)]="light.powerState" (valueChange)="onLightPowerStateChange(light.id, $event)">
+        <ph-button-select [label]="'Power'" [(value)]="light.powerState"
+            (valueChange)="updateLightPowerState(light.id, $event)">
             <ph-button [value]="lightPowerState.POWER_STATE_UNPOWERED">OFF</ph-button>
             <ph-button [value]="lightPowerState.POWER_STATE_EMERGENCY">EMERGENCY</ph-button>
             <ph-button [value]="lightPowerState.POWER_STATE_CRITICAL">CRITICAL</ph-button>
             <ph-button [value]="lightPowerState.POWER_STATE_POWERED">ON</ph-button>
         </ph-button-select>
-        <ph-button-select [label]="'DMX'" [(value)]="light.dmxState" (valueChange)="onLightDMXStateChange(light.id, $event)">
+        <ph-button-select [label]="'DMX'" [(value)]="light.dmxState"
+            (valueChange)="updateLightDMXState(light.id, $event)">
             <ph-button [value]="lightDMXState.DMX_STATE_OFF">OFF</ph-button>
             <ph-button [value]="lightDMXState.DMX_STATE_RED">RED</ph-button>
             <ph-button [value]="lightDMXState.DMX_STATE_WHITE">WHITE</ph-button>
             <ph-button [value]="lightDMXState.DMX_STATE_FLICKER">FLICKER</ph-button>
         </ph-button-select>
     </ph-group>
+    }
 </ph-form>

@@ -57,7 +57,7 @@ export class LightApiController {
     @Roles(['admin'])
     public async setLightLockState(client: Ws, req: SetLightLockState_Request) {
         this.light.setLightLockState(req.id, req.state);
-
+        this.gateway.requestAllButOne(client.id, { setLightLockState: req }).then().catch(console.error);
     }
 
     @Rpc()
@@ -74,8 +74,7 @@ export class LightApiController {
     @Roles(['admin'])
     public async setLightDmxState(client: Ws, req: SetLightDmxState_Request) {
         this.light.setLightDMXState(req.id, req.state);
-
-
+        this.gateway.requestAllButOne(client.id, { setLightDmxState: req }).then().catch(console.error);
     }
 
     @Rpc()
