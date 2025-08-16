@@ -77,4 +77,12 @@ export class DroneService {
                 break;
         }
     }
+
+    public handlePlayEnvironment(filepath: string) {
+        if (filepath.includes('/drone/')) {
+           this.sound.environmentTrack.play(filepath).catch((err) => {
+               console.error(`Error playing environment sound from ${filepath}:`, err);
+           });
+        }
+    }
 }

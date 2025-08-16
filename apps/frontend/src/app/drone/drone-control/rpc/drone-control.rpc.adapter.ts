@@ -54,7 +54,7 @@ export class DroneControlRpcAdapter {
    */
   public async playSound(file: string) {
     const req: Request = {
-      playAnnouncement: { filepath: `assets/wav/drone/${file}` }
+      playEnvironment: { filepath: `assets/wav/drone/${file}` }
     }
 
     await this.gateway.request(req);

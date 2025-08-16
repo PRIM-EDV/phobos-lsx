@@ -53,7 +53,6 @@ export class QlcWebsocketService {
 
   private onMessage(message: Uint8Array) {
     const payload = String.fromCharCode.apply(null, new Uint16Array(message)).split('|') as string[];
-    console.log(payload)
     if (payload[0] == "QLC+API") {
       const cmd = payload[1];
       if (this.requests.has(cmd)) {

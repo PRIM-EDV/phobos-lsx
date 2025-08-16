@@ -1,5 +1,5 @@
 import { UseGuards } from "@nestjs/common";
-import { BombArea_Request, GetBombAreaState_Request, GetBombAreaState_Response, GetModeSilentState_Request, GetModeSilentState_Response, SetModeSilentState_Request } from "@phobos-lsx/protocol";
+import { BombArea_Request, GetBombAreaState_Request, GetBombAreaState_Response, GetModeSilentState_Request, GetModeSilentState_Response, PlayEnvironment_Request, SetModeSilentState_Request } from "@phobos-lsx/protocol";
 
 import { AppGateway } from "src/app/app.gateway";
 import { RolesGuard } from "src/app/common/guards/roles.guards";
@@ -41,6 +41,12 @@ export class DroneController {
     @Roles(['admin'])
     public getModeSilentState(client: Ws, req: GetModeSilentState_Request): GetModeSilentState_Response {
         return {state: this.state.modeSilentState};
+    }
+
+    @Rpc()
+    @Roles(['admin'])
+    public async playEnvironment(client: Ws, req: PlayEnvironment_Request) {
+        this.service.handlePlayEnvironment(req.filepath);
     }
 
     @Rpc()
