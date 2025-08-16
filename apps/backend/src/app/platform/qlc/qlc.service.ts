@@ -1,24 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { QlcWebsocketService } from "./qlc-websocket.service";
-import { PathwayUnit } from "./units/pathway.unit";
 
 @Injectable()
 export class QlcService {
-
-    public pathwayScience = new PathwayUnit(0, 0, this);
-
     constructor(private readonly qlc: QlcWebsocketService) {
         this.qlc.onOpen.subscribe(() => {
             this.getCues().then(console.log);
         })
     }
-
-    // public setWidgetValue(widgetId: number, value: number) {
-    //     if(this.ws.readyState == WebSocket.OPEN) {
-    //     } else {
-    //         this.log.error(`Could not set widget value: WebSocket not connected`)
-    //     }
-    // }
 
     public async setCue(cueId: number, cmd: 'STOP' | 'STEP' | 'PLAY', step?: number) {
     	if(cmd == "STEP") {
@@ -52,6 +41,11 @@ export class QlcService {
         }
 
         return widgets;
+    }
+
+    public async getWidgetStatus(id: number) {
+        const data = await this.qlc.getQlcValue("getWidgetStatus", `|${id}`);
+        return data[0];
     }
 
     public async getWidgetType(id: number) {

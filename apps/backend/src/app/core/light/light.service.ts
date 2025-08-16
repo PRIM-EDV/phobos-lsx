@@ -191,30 +191,7 @@ export class LightService {
     }
 
     @OnEvent('light.changed')
-    handleOrderCreatedEvent(light: LightChangedEvent) {
-        console.log('Light changed event', light);
-        this.lightRpcAdapter.setDmxState(light.id, light.state);
+    handleLightChangedEvent(light: LightChangedEvent) {
+        // this.lightRpcAdapter.setDmxState(light.id, light.state);
     }
-
-    // public async setLightLines(mode: LightLineMode.MODE_BLACKOUT | LightLineMode.MODE_RED | LightLineMode.MODE_WHITE) {
-    //     // for (const [lineId, line] of this.lightlines) {
-    //     //     await this.setLightLine(lineId, mode);
-    //     // }
-    // }
-
-    // public async setLightLine(id: LightId, mode: LightLineMode.MODE_BLACKOUT | LightLineMode.MODE_RED | LightLineMode.MODE_WHITE) {
-    //     // const line = this.lightlines.get(id)
-
-    //     // await line.setMode(mode);
-    // }
-
-    // public async getLightLineByLightId(LightId: any): Promise<Lightline> {
-    //     // for (const [lineId, line] of this.lightlines) {
-    //     //     if (line.LightId == LightId) {
-    //     //         return line;
-    //     //     }
-    //     // }
-
-    //     throw new Error("No Lightline could be found!");
-    // }
 }

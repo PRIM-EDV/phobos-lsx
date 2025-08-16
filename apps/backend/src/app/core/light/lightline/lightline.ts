@@ -107,7 +107,6 @@ export class Lightline {
                 this.dmxState,
             ),
         );
-          
     }
 
     public async setSpecial(special: boolean) {
