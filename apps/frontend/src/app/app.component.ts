@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TOKEN_SERVICE_TOKEN, ITokenService } from '@phobos/core';
 import { LsxGateway } from './infrastructure/lsx.gateway';
+import { OverlayComponent } from './overlay/overlay.component';
 
 declare global {
   interface Window {
@@ -17,7 +18,8 @@ declare global {
   selector: 'app-root',
   imports: [
     CommonModule,
-    RouterOutlet
+    RouterOutlet,
+    OverlayComponent
   ],
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
@@ -35,7 +37,7 @@ export class AppComponent {
   });
 
   constructor(
-    private readonly lsxGateway: LsxGateway,
+    public readonly lsxGateway: LsxGateway,
     @Optional() @Inject(TOKEN_SERVICE_TOKEN) private tokenService: ITokenService
   ) {
     if (!this.tokenService) {

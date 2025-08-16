@@ -1,0 +1,32 @@
+:host {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+div.warning {
+    position: absolute;
+    background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75) 20px, rgba(0, 0, 0, 0.5) 20px, rgba(0, 0, 0, 0.6) 40px);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    div.message {
+        position: absolute;
+        background-color: #1e1e1e;
+        left: 0;
+        right: 0;
+        height: 128px;
+        top: 50%;
+        margin-top: -64px;
+
+        line-height: 128px;
+        font-family: 'Fira Code';
+        font-size: 20px;
+        color: white;
+        text-align: center;
+    }
+}
