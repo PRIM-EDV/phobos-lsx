@@ -1,11 +1,25 @@
-div.content {
-    grid-row: 2;
-    grid-column: 2;
+:host{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+    min-height: 0;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+div.content {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    min-height: 0;
+
+    div.row {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-height: 0;
+    }
 }
 
 ph-window {
-    // padding: 3px;
+    overflow: hidden;
 }

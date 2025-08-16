@@ -41,13 +41,13 @@ export class QlcWebsocketService {
   }
 
   private onConnectionClosed() {
-    this.log.info(`Could not connect to ${URL} retrying...`)
+    this.log.info(`Could not connect to ${this.wsUrl} retrying...`)
     setTimeout(this.reconnectWebsocket.bind(this), 5000);
     this.onClosed.next();
   }
 
   private onConnectionSuccess() {
-    this.log.info(`Connected to ${URL}`);
+    this.log.info(`Connected to ${this.wsUrl}`);
     this.onOpen.next();
   }
 
