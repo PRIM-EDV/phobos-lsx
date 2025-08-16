@@ -1,5 +1,5 @@
 <ph-form>
-    <ph-button-select [label]="'State'" [(value)]="powerPlantState" (valueChange)="updateServerPowerGridState()">
+    <ph-button-select [label]="'State'" [value]="powerPlantState()" (valueChange)="service.updatePowerPlantState($event)">
         <ph-button [value]="'offline'">OFFLINE</ph-button>
         <ph-button [value]="'critical'">CRITICAL</ph-button>
         <ph-button [value]="'low'">LOW</ph-button>

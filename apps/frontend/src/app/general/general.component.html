@@ -1,12 +1,8 @@
 <div class="content">
-    <!-- <ph-window *ngIf="this.tab == 'GNRL'" [title]="'POWER PLANT'" [subtitle]="'TR2805'" style="grid-row:1/5; grid-column: 1/38">
-        <app-power-plant></app-power-plant>
-    </ph-window>
-
-
-
- -->
     <div class="row">
+        <ph-window [title]="'POWER PLANT'" [subtitle]="'TR2805'" style="min-height: fit-content;">
+            <app-power-plant></app-power-plant>
+        </ph-window>
         <ph-window [title]="'BASE DEVICE POWER'" [subtitle]="'GRD8015'" style="min-height: fit-content;">
             <power-control></power-control>
         </ph-window>
@@ -25,12 +21,4 @@
             <speaker-fluff></speaker-fluff>
         </ph-window>
     </div>
-
-
-    <!-- <ph-window *ngIf="auth.role == 'admin' && this.tab == 'DRONE'" [title]="'EXPLOSIONS'" [subtitle]="'TR2805'" style="grid-row:1/32; grid-column: 1/46">
-        <drone-bombardment></drone-bombardment>
-    </ph-window> -->
-    <!-- <ph-window *ngIf="auth.role == 'admin' && this.tab == 'DRONE'" [title]="'DRONE'" [subtitle]="'TR2805'" style="grid-row:1/16; grid-column: 46/66">
-        <drone-control></drone-control>
-    </ph-window> -->
 </div>

@@ -68,11 +68,13 @@ export class DroneService {
                 }
                 break;
             case ModeSilentState.MODE_SILENT_STATE_SILENT_DRONE:
+                this.sound.announcementTrack.stop();
                 this.sound.announcementTrack.play('assets/wav/drone/DROHNE-alarm.wav').then( () => {
                     this.light.getLightLines().forEach(async (line) => { await line.setMode(LightMode.LIGHT_MODE_RED)} );
                 }
                 ).catch((err) =>{console.log(err)}); break;
             case ModeSilentState.MODE_SILENT_STATE_SILENT:
+                this.sound.announcementTrack.stop();
                 this.light.getLightLines().forEach(async (line) => { await line.setMode(LightMode.LIGHT_MODE_RED)} );
                 break;
         }
