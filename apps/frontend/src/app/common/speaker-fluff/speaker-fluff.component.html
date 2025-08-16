@@ -1,5 +1,5 @@
 <ph-form>
-    <ph-button-select [label]="'State'" [value]="service.fluffState() ? 'on' : 'off'" (valueChange)="this.service.updateFluffState($event)">
+    <ph-button-select [label]="'Autoplay'" [value]="service.fluffState() ? 'on' : 'off'" (valueChange)="this.service.updateFluffState($event)">
         <ph-button [value]="'off'">OFF</ph-button>
         <ph-button [value]="'on'">ON</ph-button>
     </ph-button-select>

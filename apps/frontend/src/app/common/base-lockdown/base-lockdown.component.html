@@ -1,0 +1,14 @@
+<ph-form>
+    <ph-button-select [label]="'State'" [value]="service.lockdownState() === LockdownState.LOCKDOWN_STATE_LOCKDOWN ? 'lockdown' : 'normal'" (valueChange)="service.updateLockdownState($event)">
+        <ph-button [value]="'lockdown'">LOCKDOWN</ph-button>
+        <ph-button [value]="'normal'">NORMAL</ph-button>
+    </ph-button-select>
+    <ph-button-select [label]="'Automatic lockdown'" [value]="service.autoLockdown() ? 'on' : 'off'" (valueChange)="service.updateAutoLockdown($event)">
+        <ph-button [value]="'off'">OFF</ph-button>
+        <ph-button [value]="'on'">ON</ph-button>
+    </ph-button-select>
+    <ph-button-select [label]="'Play announcements'" [value]="service.lockdownAnnouncements() ? 'on' : 'off'" (valueChange)="service.updateLockdownAnnouncements($event)">
+        <ph-button [value]="'off'">OFF</ph-button>
+        <ph-button [value]="'on'">ON</ph-button>
+    </ph-button-select>
+</ph-form>

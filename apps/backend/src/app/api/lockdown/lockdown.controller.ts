@@ -39,7 +39,7 @@ export class LockdownController {
     @Roles(['admin'])
     public setLockdownAnnouncements(client: Ws, req: SetLockdownAnnouncements_Request) {
         this.service.setLockdownAnnouncements(req.state);
-        this.gateway.requestAll({ setLockdownAnnouncements: req }).then();
+        this.gateway.requestAllButOne(client.id, { setLockdownAnnouncements: req }).then();
     }
 
     @Rpc()

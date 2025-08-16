@@ -192,6 +192,6 @@ export class LightService {
 
     @OnEvent('light.changed')
     handleLightChangedEvent(light: LightChangedEvent) {
-        // this.lightRpcAdapter.setDmxState(light.id, light.state);
+        this.lightRpcAdapter.setDmxState(light.id, light.state);
     }
 }

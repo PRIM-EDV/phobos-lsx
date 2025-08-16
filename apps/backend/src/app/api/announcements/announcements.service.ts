@@ -21,6 +21,10 @@ export class AnnouncementsService {
     }
 
     public async playAnnouncement(filepath: string): Promise<void> {
-        this.sound.announcementTrack.play(filepath).then().catch((err) => {console.log(err)});
+        try {
+            await this.sound.announcementTrack.play(filepath);
+        } catch (err) {
+            console.error(err);
+        }
     }
 }
