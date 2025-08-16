@@ -1,0 +1,41 @@
+<ph-form>
+    <ph-button-select [label]="'Mode silent'" [value]="modeSilentState()" (valueChange)="service.updateModeSilentState($event)">
+        <ph-button [value]="'normal'">NORMAL</ph-button>
+        <ph-button [value]="'silent'">SILENT</ph-button>
+        <ph-button [value]="'silent drone'">SILENT DRONE</ph-button>
+    </ph-button-select>
+    <ph-command-list [label]="'Play warning'">
+        <ph-button (click)="rpc.playSound('DROHNE-vorwarnung.wav')">INCOMING</ph-button>
+        <ph-button (click)="rpc.playSound('DROHNE-warnung-aufgehoben.wav')">SAFE</ph-button>
+    </ph-command-list>
+</ph-form>
+
+<ph-table [label]="'Recordings'">
+    <tr>
+        <th style="width: 32px;">ID</th>
+        <th>File</th>
+        <th style="width: 64px;">Command</th>
+    </tr>
+    @for(item of service.droneSounds; track item; let idx = $index) {
+        <tr>
+            <td>{{idx}}</td>
+            <td>{{item.label}}</td>
+            <td><ph-button [value]="item.file" (click)="rpc.playSound(item.file)">PLAY</ph-button></td>
+        </tr>
+    }
+</ph-table>
+
+<ph-table [label]="'Bombs'">
+    <tr>
+        <th style="width: 32px;">ID</th>
+        <th>File</th>
+        <th style="width: 64px;">Command</th>
+    </tr>
+    @for(item of service.bombSounds; track item; let idx = $index) {
+        <tr>
+            <td>{{idx}}</td>
+            <td>{{item.label}}</td>
+            <td><ph-button [value]="item.file" (click)="rpc.playSound(item.file); rpc.bombBase()">FIRE!</ph-button></td>
+        </tr>
+    }
+</ph-table>

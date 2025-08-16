@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../infrastructure/backend.service';
 import { DroneBombardmentService } from './drone-bombardment.service';
 import { BombAreaId, BombAreaState, Request } from '@phobos-lsx/protocol';
+import { LsxGateway } from '../../infrastructure/lsx.gateway';
 
 @Component({
     selector: 'drone-bombardment',
@@ -25,29 +25,29 @@ export class DroneBombardmentComponent implements OnInit {
       [BombAreaId.AREA_TUNNEL, BombAreaState.STATE_ARMED]
     ]); 
 
-  constructor(private backend: BackendService, private readonly service: DroneBombardmentService) {
-    this.backend.onOpen.subscribe(async () => {
-        for (const [id, _] of this.areaStates) {
-            const state = await this.service.getBombAreaState(id);
-            this.areaStates.set(id, state);
-        }
-      })
-  
-      this.backend.onRequest.subscribe(this.handleRequest.bind(this));
+  constructor(private gateway: LsxGateway, private readonly service: DroneBombardmentService) {
+      // this.backend.onOpen.subscribe(async () => {
+      //     for (const [id, _] of this.areaStates) {
+      //         const state = await this.service.getBombAreaState(id);
+      //         this.areaStates.set(id, state);
+      //     }
+      //   })
+    
+      //   this.backend.onRequest.subscribe(this.handleRequest.bind(this));
    }
 
   ngOnInit(): void {
-    if (this.backend.isConnected) {
-        for (const [id, _] of this.areaStates) {
-            this.service.getBombAreaState(id).then((state) => {
-                this.areaStates.set(id, state);
-            });
-        }
-      }
+    // if (this.backend.isConnected) {
+    //     for (const [id, _] of this.areaStates) {
+    //         this.service.getBombAreaState(id).then((state) => {
+    //             this.areaStates.set(id, state);
+    //         });
+    //     }
+    //   }
   }
 
   public async bombArea(id: BombAreaId) {
-    await this.service.bombArea(id);
+    // await this.service.bombArea(id);
   }
 
   private handleRequest(event: {id: string, request: Request}) {
