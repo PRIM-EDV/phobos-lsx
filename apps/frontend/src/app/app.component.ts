@@ -27,12 +27,9 @@ declare global {
 })
 export class AppComponent {
 
-  autoGatewayConnection = effect(() => {
-    console.log('Auto connecting to Lsx Gateway...');
+  autoGatewayConnection = effect(async () => {
     if (this.tokenService && !this.lsxGateway.isConnected()) {
-      this.connectToLsxGateway().catch(error => {
-        console.error('Failed to connect to Lsx Gateway:', error);
-      });
+      await this.connectToLsxGateway();
     }
   });
 
@@ -54,7 +51,14 @@ export class AppComponent {
   private async connectToLsxGateway(): Promise<void> {
     const token = this.tokenService?.accessToken() || '';
     if (token) {
-      await this.lsxGateway.connect(token);
+      try {
+        await this.lsxGateway.connect(token);
+      } catch (error) {
+        console.error('Error connecting to Lsx Gateway:', error);
+        setTimeout(async () => {
+          await this.connectToLsxGateway();
+        }, 5000);
+      }
     } else {
       console.warn('No token found, unable to connect to Lsx Gateway');
     }
