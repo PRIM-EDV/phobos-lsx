@@ -14,6 +14,7 @@ export class PowerPlantApiService extends LsxRequestHandler {
   }
 
   private setPowerPlantState(request: SetPowerPlantState_Request): void {
+    console.log("PowerPlantApiService.setPowerPlantState", request);
     this.service.powerPlantState.set(request.state);
   }
 }

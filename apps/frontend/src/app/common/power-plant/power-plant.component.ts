@@ -2,6 +2,7 @@ import { Component, computed, OnInit, Signal } from '@angular/core';
 import { PowerPlantState, Request } from '@phobos-lsx/protocol';
 import { PhButton, PhButtonSelect, PhCommandList, PhForm } from '@phobos/elements';
 import { PowerPlantService } from './power-plant.service';
+import { PowerPlantApiService } from './api/power-plant.api.service';
 
 @Component({
     selector: 'app-power-plant',
@@ -28,6 +29,7 @@ export class PowerPlantComponent {
   })
 
   constructor(
-    public service: PowerPlantService
+    public readonly service: PowerPlantService,
+    public readonly api: PowerPlantApiService
   ) { }
 }
