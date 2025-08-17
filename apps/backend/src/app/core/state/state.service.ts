@@ -1,27 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { ModeSilentState, PowerPlantState, BombAreaId, BombAreaState } from '@phobos-lsx/protocol';
+import { ModeSilentState, PowerPlantState, BombAreaId, BombAreaState, LockdownState } from '@phobos-lsx/protocol';
 
 
 @Injectable()
 export class StateService {
 
+    public lockdownState: LockdownState = LockdownState.LOCKDOWN_STATE_NORMAL;
     public modeSilentState: ModeSilentState = ModeSilentState.MODE_SILENT_STATE_NORMAL;
-
-    // public powerLineStates = new Map<PowerLineId, PowerLineState>([
-    //     [PowerLineId.LINE_OG_BASE_CIC, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_BASE_MED, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_BASE_SCI, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_BASE_TEC, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_BASE_HC, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_GATE, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_MESSHALL, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_COURTYARD, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_PARCELS, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_BASE_ADM, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_OG_LOG, PowerLineState.STATE_POWERED],
-    //     [PowerLineId.LINE_UG_HALL, PowerLineState.STATE_POWERED]
-    // ]);
-
     public powerPlantState: PowerPlantState = PowerPlantState.STATE_NORMAL;
 
     public bombAreaStates = new Map<BombAreaId, BombAreaState>([

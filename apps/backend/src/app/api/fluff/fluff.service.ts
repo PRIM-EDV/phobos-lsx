@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ModeSilentState } from '@phobos-lsx/protocol';
+import { LockdownState, ModeSilentState } from '@phobos-lsx/protocol';
 
 import { StateService } from 'src/app/core/state/state.service';
 import { SoundService } from 'src/app/core/sound/sound.service';
@@ -35,7 +35,7 @@ export class FluffService {
         const fluffFiles = await this.getFluffFiles();
 
         try {
-            if (this.fluffState && this.state.modeSilentState == ModeSilentState.MODE_SILENT_STATE_NORMAL) {
+            if (this.fluffState && this.state.modeSilentState == ModeSilentState.MODE_SILENT_STATE_NORMAL && this.state.lockdownState == LockdownState.LOCKDOWN_STATE_NORMAL) {
                 if (seconds == 0 && (hours > 9 || hours < 3)) {
                     switch (minutes) {
                         case 15: this.sound.announcementTrack.play(`assets/wav/fluff/${fluffFiles[Math.floor(Math.random() * fluffFiles.length)]}`).then().catch(); break;

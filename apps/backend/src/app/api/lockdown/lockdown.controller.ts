@@ -7,6 +7,7 @@ import { LockdownService } from "./lockdown.service";
 import { Ws } from "src/app/common/interfaces/ws";
 import { Roles } from "src/app/common/decorators/roles.decorator";
 import { RpcHandler, Rpc } from "lib/rpc/decorators";
+import { StateService } from "src/app/core/state/state.service";
 
 @RpcHandler(AppGateway)
 @UseGuards(RolesGuard)
@@ -14,7 +15,9 @@ export class LockdownController {
 
     constructor(
         private readonly gateway: AppGateway,
-        private readonly service: LockdownService) { }
+        private readonly service: LockdownService,
+        private readonly state: StateService
+    ) { }
 
     @Rpc()
     @Roles(['admin'])
@@ -45,7 +48,7 @@ export class LockdownController {
     @Rpc()
     @Roles(['admin'])
     public getLockdownState(): GetLockdownState_Response {
-        return { state: this.service.lockdownState };
+        return { state: this.state.lockdownState };
     }
 
     @Rpc()

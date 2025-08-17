@@ -8,18 +8,21 @@ import { SoundService } from 'src/app/core/sound/sound.service';
 @Injectable()
 export class LockdownService {
 
-	public lockdownState: LockdownState = LockdownState.LOCKDOWN_STATE_NORMAL;
 	public autoLockdown = true;
 	public lockdownAnnouncements = true;
 
-	constructor(private readonly sound: SoundService, private state: StateService, private light: LightService) {
+	constructor(
+		private readonly sound: SoundService, 
+		private readonly state: StateService, 
+		private readonly light: LightService
+	) {
 		setInterval(this.lockdownAnnoucementsInterval.bind(this), 1000);
 		setInterval(this.autoLockdownInterval.bind(this), 1000);
 	}
 
 	public setLockdownState(state: LockdownState) {
 		this.handleBaseStateChange(state);
-		this.lockdownState = state;
+		this.state.lockdownState = state;
 	}
 
 	public setAutoLockdown(state: boolean) {
