@@ -1,5 +1,5 @@
-import { Component, computed, OnInit, Signal } from '@angular/core';
-import { PowerPlantState, Request } from '@phobos-lsx/protocol';
+import { Component, computed, Signal } from '@angular/core';
+import { PowerPlantState } from '@phobos-lsx/protocol';
 import { PhButton, PhButtonSelect, PhCommandList, PhForm } from '@phobos/elements';
 import { PowerPlantService } from './power-plant.service';
 import { PowerPlantApiService } from './api/power-plant.api.service';

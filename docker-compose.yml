@@ -1,0 +1,16 @@
+services:
+  server:
+    image: prim/lsx-server:1.0.0
+    build:
+      context: "."
+    restart: always
+    container_name: "lsx_server"
+    ports:
+      - "${PHOBOS_MAPTOOL_PORT:-3005}:4005"
+    # devices:
+    #   - "/dev/snd:/dev/snd"
+
+    environment:
+      - MONGO_DB_HOST=db
+      - PHOBOS_AUTH_URL=${PHOBOS_AUTH_URL:-http://localhost:3000}
+      - PHOBOS_MAPTOOL_PORT=${PHOBOS_MAPTOOL_PORT:-3002}

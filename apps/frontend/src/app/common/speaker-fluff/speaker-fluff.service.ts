@@ -1,6 +1,4 @@
 import { effect, Injectable, signal, WritableSignal } from '@angular/core';
-import { BackendService } from '../../infrastructure/backend.service';
-import { Request, Response } from '@phobos-lsx/protocol';
 import { LsxGateway } from '../../infrastructure/lsx.gateway';
 import { SpeakerFluffRpcAdapter } from './rpc/speaker-fluff.rpc.adapter';
 

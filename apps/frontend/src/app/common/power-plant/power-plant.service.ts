@@ -1,5 +1,5 @@
 import { effect, Injectable, signal, WritableSignal } from '@angular/core';
-import { PowerPlantState, Request } from '@phobos-lsx/protocol';
+import { PowerPlantState } from '@phobos-lsx/protocol';
 
 import { LsxGateway } from '../../infrastructure/lsx.gateway';
 import { PowerPlantRpcAdapter } from './rpc/power-plant.rpc.adapter';

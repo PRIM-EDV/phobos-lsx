@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PhButton, PhTable, PhWindow } from '@phobos/elements';
+import { Component } from '@angular/core';
+import { PhButton, PhTable } from '@phobos/elements';
 import { CommonModule } from '@angular/common';
 import { SpeakerAnnouncementsRpcAdapter } from './rpc/speaker-annoucements.rpc.adapter';
 import { SpeakerAnnouncementsService } from './speaker.announcements.service';

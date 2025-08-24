@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../../infrastructure/backend.service';
-import { SpeakerFluffService } from './speaker-fluff.service';
-import { Request } from '@phobos-lsx/protocol';
+import { Component } from '@angular/core';
 import { PhButton, PhButtonSelect, PhForm, PhTable } from '@phobos/elements';
-import { SpeakerAnnouncementsRpcAdapter } from '../speaker-announcements/rpc/speaker-annoucements.rpc.adapter';
+
+import { SpeakerFluffService } from './speaker-fluff.service';
 import { SpeakerFluffRpcAdapter } from './rpc/speaker-fluff.rpc.adapter';
 import { SpeakerFluffApiService } from './api/speaker-fluff.api.service';
 
