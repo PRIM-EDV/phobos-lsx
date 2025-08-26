@@ -3,6 +3,7 @@ import { GeneralComponent } from './general/general.component';
 import { DroneComponent } from './drone/drone.component';
 import { authzGuard } from './auth/authz.guard';
 import { TechnicalComponent } from './technical/technical.component';
+import { EventComponent } from './event/event.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,14 @@ export const routes: Routes = [
   {
     path: 'drone',
     component: DroneComponent,
+    canActivate: [authzGuard],
+    data: {
+      roles: ['admin']
+    },
+  },
+  {
+    path: 'event',
+    component: EventComponent,
     canActivate: [authzGuard],
     data: {
       roles: ['admin']

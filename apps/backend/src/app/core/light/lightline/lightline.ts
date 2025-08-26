@@ -47,19 +47,23 @@ export class Lightline {
             return;
         }
 
-        if (this.specialCue) {
-            await Lightline.dmx.setCue(this.specialCue, 'STOP');
-        }
+        try {
+            if (this.specialCue) {
+                await Lightline.dmx.setCue(this.specialCue, 'STOP');
+            }
 
-        switch (state) {
-            case LightDMXState.DMX_STATE_OFF:
-            case LightDMXState.DMX_STATE_RED:
-            case LightDMXState.DMX_STATE_WHITE:
-                await Lightline.dmx.setCue(this.flickerCue, 'STOP');
-                await Lightline.dmx.setCue(this.staticCue, 'STEP', this.dmxStates.get(state)); break;
-            case LightDMXState.DMX_STATE_FLICKER:
-                await Lightline.dmx.setCue(this.staticCue, 'STOP');
-                await Lightline.dmx.setCue(this.flickerCue, 'PLAY'); break;
+            switch (state) {
+                case LightDMXState.DMX_STATE_OFF:
+                case LightDMXState.DMX_STATE_RED:
+                case LightDMXState.DMX_STATE_WHITE:
+                    await Lightline.dmx.setCue(this.flickerCue, 'STOP');
+                    await Lightline.dmx.setCue(this.staticCue, 'STEP', this.dmxStates.get(state)); break;
+                case LightDMXState.DMX_STATE_FLICKER:
+                    await Lightline.dmx.setCue(this.staticCue, 'STOP');
+                    await Lightline.dmx.setCue(this.flickerCue, 'PLAY'); break;
+            }
+        } catch (e) {
+            console.error(e);
         }
 
         this.dmxState = state;
@@ -70,7 +74,7 @@ export class Lightline {
         await this.update();
     }
 
-    public async setSwitchState(state: LightSwitchState) { 
+    public async setSwitchState(state: LightSwitchState) {
         this.switchState = state;
         await this.update();
     }
@@ -78,13 +82,15 @@ export class Lightline {
     public async update() {
         if (this.switchState === LightSwitchState.SWITCH_STATE_ON) {
             if (this.powerState == PowerState.POWER_STATE_POWERED) {
-                switch (this.mode) { 
+                switch (this.mode) {
                     case LightMode.LIGHT_MODE_WHITE:
                         await this.setDmxState(LightDMXState.DMX_STATE_WHITE); break;
                     case LightMode.LIGHT_MODE_RED:
                         await this.setDmxState(LightDMXState.DMX_STATE_RED); break;
+                    case LightMode.LIGHT_MODE_BLACKOUT:
+                        await this.setDmxState(LightDMXState.DMX_STATE_OFF); break;
                 }
-            } else if (this.powerState == PowerState.POWER_STATE_CRITICAL) { 
+            } else if (this.powerState == PowerState.POWER_STATE_CRITICAL) {
                 await this.setDmxState(LightDMXState.DMX_STATE_FLICKER);
             } else if (this.powerState == PowerState.POWER_STATE_EMERGENCY) {
                 await this.setDmxState(LightDMXState.DMX_STATE_RED);
@@ -94,11 +100,11 @@ export class Lightline {
         } else {
             if (this.specialCue) {
                 await Lightline.dmx.setCue(this.specialCue, 'STOP');
-              }
-          await Lightline.dmx.setCue(this.flickerCue, 'STOP');
-          await Lightline.dmx.setCue(this.staticCue, 'STEP', this.dmxStates.get(LightDMXState.DMX_STATE_OFF));
+            }
+            await Lightline.dmx.setCue(this.flickerCue, 'STOP');
+            await Lightline.dmx.setCue(this.staticCue, 'STEP', this.dmxStates.get(LightDMXState.DMX_STATE_OFF));
 
-          this.dmxState = LightDMXState.DMX_STATE_OFF;
+            this.dmxState = LightDMXState.DMX_STATE_OFF;
         }
 
         Lightline.eventEmitter.emit('light.changed',

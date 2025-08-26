@@ -39,8 +39,9 @@ export class WmpTrack implements Track {
         throw new Error('Method not implemented.');
     }
     async stop(): Promise<void> {
-        this.isPlaying = true;
-        this.process.kill('SIGTERM');
+        if (this.process) {
+            this.process.kill('SIGTERM');
+        }
         this.isPlaying = false;
         this.wav = '';
     }

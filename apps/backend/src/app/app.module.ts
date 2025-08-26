@@ -26,6 +26,7 @@ import { AuthModule } from './infrastructure/auth/auth.module';
 
 import environment  from 'src/environments/environment';
 import environmentDevelopment from 'src/environments/environment.development';
+import { EventApiModule } from './api/event/event.api.module';
 
 
 const { values } = parseArgs({
@@ -48,6 +49,7 @@ const { values } = parseArgs({
       load: [ values.configuration == "development" ? environmentDevelopment : environment ],
       isGlobal: true,
     }),
+    EventApiModule,
     StateModule,
     LoggingModule,
     LockdownModule,
