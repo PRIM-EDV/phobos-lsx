@@ -1,0 +1,25 @@
+:host{
+    display: flex;
+    overflow: hidden;
+    min-height: 0;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+div.content {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    min-height: 0;
+
+    div.row {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-height: 0;
+    }
+}
+
+ph-window {
+    overflow: hidden;
+}

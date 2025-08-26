@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { LightControlService } from './light-control.service';
 import { LightId, LightDMXState, LightSwitchState, PowerState, LockState, GetLightDmxState_Response, GetLightPowerState_Response, GetLightSwitchState_Response, GetLightLockState_Response, LightMode, GetLightMode_Response, Request, Response } from '@phobos-lsx/protocol';
 import { PhButton, PhButtonSelect, PhForm, PhGroup } from '@phobos/elements';
 import { LightControlRpcAdapter } from './rpc/light-control.rpc.adapter';
 import { LightControlApiService } from './api/light-control.api.service';
+import { AUTHZ_SERVICE_TOKEN, IAuthzService } from '@phobos/core';
 
 @Component({
   selector: 'light-control',
@@ -25,6 +26,7 @@ export class LightControlComponent {
   public lightDMXState = LightDMXState;
 
   constructor(
+    @Optional() @Inject(AUTHZ_SERVICE_TOKEN) public authz: IAuthzService,
     public readonly rpc: LightControlRpcAdapter,
     public readonly service: LightControlService,
     private readonly api: LightControlApiService

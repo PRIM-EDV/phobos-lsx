@@ -1,7 +1,8 @@
-import { effect, Injectable, signal, WritableSignal } from "@angular/core";
+import { effect, Inject, Injectable, Optional, signal, WritableSignal } from "@angular/core";
 import { PowerDevice, PowerState } from "@phobos-lsx/protocol";
 import { LsxGateway } from "../../infrastructure/lsx.gateway";
 import { PowerControlRpcAdapter } from "./rpc/power-control.rpc.adapter";
+import { AUTHZ_SERVICE_TOKEN, IAuthzService } from "@phobos/core";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class PowerControlService {
   });
 
   constructor(
+    @Optional() @Inject(AUTHZ_SERVICE_TOKEN) public authz: IAuthzService,
     private readonly gateway: LsxGateway, 
     private readonly rpc: PowerControlRpcAdapter
   ){ }
