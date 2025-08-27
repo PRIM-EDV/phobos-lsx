@@ -2,7 +2,7 @@
 # Base dependencies layer
 # ----------------------
 FROM node:24.1.0-slim AS deps
-RUN apt update && apt install python3 build-essential protobuf-compiler -y
+RUN apt update && apt install python3 build-essential protobuf-compiler alsa-utils libasound2-dev -y
 
 WORKDIR /opt/phobos-lsx
 
