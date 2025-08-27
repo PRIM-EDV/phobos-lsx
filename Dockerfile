@@ -41,6 +41,9 @@ FROM backend
 WORKDIR /opt/phobos-lsx
 COPY --from=frontend /opt/phobos-lsx/apps/frontend/dist/phobos-lsx/browser ./apps/backend/dist/public
 
+# Get alsa config
+COPY ./asound.conf /etc/asound.conf
+
 # Run startscript
 COPY ./docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
