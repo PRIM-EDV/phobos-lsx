@@ -3,11 +3,13 @@ import { QlcModule } from 'src/app/platform/qlc/qlc.module';
 import { SoundModule } from 'src/app/core/sound/sound.module';
 import { EventApiController } from './event.api.controller';
 import { EventApiService } from './event.api.service';
+import { PowerApiModule } from '../power/power.api.module';
 
 @Module({
   imports: [
     QlcModule,
-    SoundModule
+    SoundModule,
+    PowerApiModule
   ],
   exports: [
     EventApiService

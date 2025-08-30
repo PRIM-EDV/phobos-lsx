@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { SetAutoLockdown_Request, SetLockdownAnnouncements_Request, SetLockdownState_Request } from "@phobos-lsx/protocol";
+
 import { BaseLockdownService } from "../base-lockdown.service";
 import { LsxRequestHandler } from "../../../infrastructure/rpc/lsx-request-handler.base";
 

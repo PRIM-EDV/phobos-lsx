@@ -10,6 +10,9 @@ import { PowerService } from './power.service';
   ],
   providers: [
     PowerService
+  ],
+  exports: [
+    PowerService
   ]
 })
 export class PowerApiModule {}

@@ -63,8 +63,9 @@ export class PowerApiController {
 
   @Rpc()
   public async getDevicePowerState(client: Ws, req: GetDevicePowerState_Request): Promise<GetDevicePowerState_Response> {
-    const powerState = this.device.getPowerState(req.device);
 
+    const powerState = this.device.getPowerState(req.device);
+    console.log(powerState);
     return {
       state: powerState
     }
