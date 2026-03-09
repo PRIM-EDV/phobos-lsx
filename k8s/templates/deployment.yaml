@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phobos-lsx-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: phobos-lsx
+  template:
+    metadata:
+      labels:
+        app: phobos-lsx
+    spec:
+      containers:
+      - name: phobos-lsx
+        image: "prim/phobos-lsx:{{ .Chart.AppVersion }}"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
