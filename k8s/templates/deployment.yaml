@@ -17,4 +17,4 @@ spec:
         image: "prim/phobos-lsx:{{ .Chart.AppVersion }}"
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 3000
+        - containerPort: 3005
