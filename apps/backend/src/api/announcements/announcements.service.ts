@@ -1,0 +1,30 @@
+import * as fs from 'fs';
+
+import { Injectable } from '@nestjs/common';
+import { SoundService } from 'src/core/sound/sound.service';
+
+@Injectable()
+export class AnnouncementsService {
+
+    constructor(private readonly sound: SoundService) {}
+
+    public async getAnnouncementFiles(): Promise<string[]> {
+        return new Promise<string[]>((resolve, reject) => {
+            fs.readdir('assets/wav/triggered', (err, files) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(files);
+                }
+            })
+        })
+    }
+
+    public async playAnnouncement(filepath: string): Promise<void> {
+        try {
+            await this.sound.announcementTrack.play(filepath);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+}

@@ -1,0 +1,32 @@
+import { UseGuards } from "@nestjs/common";
+import { PowerPlantState, Request } from "@phobos-lsx/protocol";
+
+import { Rpc, RpcHandler } from "lib/rpc/decorators";
+import { AppGateway } from "src/app.gateway";
+import { RolesGuard } from "src/common/guards/roles.guards";
+import { StateService } from "src/core/state/state.service";
+import { Roles } from "src/common/decorators/roles.decorator";
+import { EventApiService } from "./event.api.service";
+
+@RpcHandler(AppGateway)
+@UseGuards(RolesGuard)
+export class EventApiController {
+    constructor(
+        private readonly service: EventApiService,
+        private readonly gateway: AppGateway,
+        private readonly state: StateService
+    ) { }
+
+    @Rpc()
+    @Roles(['admin'])
+    public async fireEmp() {
+        this.service.handleFireEmp().then(
+            () => {
+                const request: Request = {
+                    setPowerPlantState: { state: PowerPlantState.STATE_OFFLINE }
+                }
+                this.gateway.requestAll(request);
+            }
+        ).catch((err) => { console.log(err) })
+    }
+}

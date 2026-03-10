@@ -5,7 +5,7 @@ import { Controller, Injectable } from "@nestjs/common/interfaces";
 import { iterate } from 'iterare';
 import { InstanceWrapper } from "@nestjs/core/injector/instance-wrapper";
 import { RPC_HANDLER_GATEWAY_METADATA, RPC_HANDLER_METADATA, RPC_METADATA } from "./constants";
-import { Ws } from "src/app/common/interfaces/ws";
+import { Ws } from "src/common/interfaces/ws";
 
 export class RpcModule {
     private container: NestContainer;

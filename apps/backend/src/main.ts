@@ -1,9 +1,9 @@
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { WsAdapter } from '@nestjs/platform-ws';
 
-import { AppModule } from './app/app.module';
+import { AppModule } from './app.module';
 import { RpcModule } from '../lib/rpc/rpc-module';
-import { WinstonLogger } from 'src/app/infrastructure/logger/winston/winston.logger';
+import { WinstonLogger } from 'src/infrastructure/logger/winston/winston.logger';
 import { ConfigService } from '@nestjs/config/dist/config.service';
 
 async function bootstrap() {
