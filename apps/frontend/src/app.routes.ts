@@ -11,7 +11,9 @@ export const routes: Routes = [
     component: GeneralComponent,
     canActivate: [authzGuard],
     data: {
-      roles: ['admin']
+      roles: ['admin'],
+      view: 'LSX',
+      tab: 'GNRL'
     },
   },
   {
@@ -19,7 +21,9 @@ export const routes: Routes = [
     component: DroneComponent,
     canActivate: [authzGuard],
     data: {
-      roles: ['admin']
+      roles: ['admin'],
+      view: 'LSX',
+      tab: 'DRONE'
     },
   },
   {

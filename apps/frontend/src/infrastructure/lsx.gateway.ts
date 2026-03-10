@@ -1,14 +1,15 @@
-import { Injectable, signal, WritableSignal } from "@angular/core";
+import { Inject, Injectable, Optional, signal, WritableSignal } from "@angular/core";
 import { v4 as uuidv4 } from 'uuid';
 import { Subject } from "rxjs";
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { LsxMessage, Request, Response } from "@phobos-lsx/protocol";
+import { MFE_REGISTRY_SERVICE_TOKEN, IRegistryService } from "@phobos/core";
 
 const LSX_SERVER_HOSTNAME = window?.__env?.LSX_SERVER_HOSTNAME || window.location.hostname;
 const LSX_SERVER_PORT = window?.__env?.LSX_SERVER_PORT || 3005;
 
 const WS_PROTOCOL = window.location.protocol === 'https:' ? 'wss' : 'ws';
-const WS_URL = `${WS_PROTOCOL}://${LSX_SERVER_HOSTNAME}:${LSX_SERVER_PORT}/api`;
+const WS_URL = `${WS_PROTOCOL}://${LSX_SERVER_HOSTNAME}:${LSX_SERVER_PORT}/app/lsx/api`;
 
 @Injectable(
   { providedIn: 'root' }
@@ -21,15 +22,20 @@ export class LsxGateway {
 
   public isConnected: WritableSignal<boolean> = signal(false);
 
+  private apiUrl: string;
   private requests: Map<string, (value: Response) => void> = new Map<string, (value: Response) => void>();
   private ws!: WebSocketSubject<any>;
 
-  constructor() { }
+  constructor(
+    @Optional() @Inject(MFE_REGISTRY_SERVICE_TOKEN) private registry: IRegistryService
+  ) { 
+    this.apiUrl = this.initializeApiUrl();
+  }
 
   public connect(jwt: string): Promise<void> {
     return new Promise((resolve, reject) => {
       this.ws = webSocket({
-        url: `${WS_URL}?token=${jwt}`,
+        url: `${this.apiUrl}?token=${jwt}`,
         openObserver: {
           next: () => {
             this.isConnected.set(true);
@@ -96,5 +102,14 @@ export class LsxGateway {
     if (this.requests.delete(id)) {
       reject();
     };
+  }
+
+   private initializeApiUrl(): string {
+    const lsxProvider = this.registry?.find({ name: 'phobos-lsx' });
+
+    if (lsxProvider) {
+      return lsxProvider[0].apiUrl.toString();
+    }
+    return WS_URL;
   }
 }

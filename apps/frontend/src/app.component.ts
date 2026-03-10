@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, effect, Inject, Optional } from '@angular/core';
+import { Component, effect, Inject, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TOKEN_SERVICE_TOKEN, ITokenService } from '@phobos/core';
@@ -44,7 +44,7 @@ export class AppComponent {
 
   async ngOnInit(): Promise<void> {
     if (!this.tokenService) {
-      console.warn('Token service is not available, skipping Maptool Gateway connection');
+      console.warn('Token service is not available, skipping Lsx Gateway connection');
     }
   }
 
@@ -53,6 +53,7 @@ export class AppComponent {
     if (token) {
       try {
         await this.lsxGateway.connect(token);
+        console.log('Successfully connected to Lsx Gateway');
       } catch (error) {
         console.error('Error connecting to Lsx Gateway:', error);
         setTimeout(async () => {

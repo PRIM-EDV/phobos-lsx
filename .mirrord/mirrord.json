@@ -1,0 +1,19 @@
+{
+    "accept_invalid_certificates": false,
+    "feature": {
+        "network": {
+            "incoming": {
+                "mode": "steal",
+                "http_filter": {
+                    "path_filter": "^/(?!api).*"
+                },
+                "port_mapping": [
+                    [80,3005]
+                ]
+            }
+        },
+        "fs": "local",
+        "env": true
+    },
+    "target": "deployment/phobos-lsx-deployment"
+}

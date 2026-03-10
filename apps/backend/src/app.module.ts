@@ -39,7 +39,7 @@ const { values } = parseArgs({
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../..', 'public'),
+      rootPath: join(__dirname, '..', 'public'),
     }),
     EventEmitterModule.forRoot(),
     AuthModule,

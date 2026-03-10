@@ -20,7 +20,7 @@ export class AuthService {
     private readonly logger: WinstonLogger,
   ) {
     this.logger.setContext(AuthService.name);
-    this.phobosAuthUrl = this.config.get<string>('phobosAuthUrl') || 'http://localhost:3000';
+    this.phobosAuthUrl = this.config.get<string>('phobosAuthUrl');
   }
 
   /**
@@ -44,7 +44,7 @@ export class AuthService {
   }
 
   private async fetchCerts(): Promise<any[]> {
-    const url = `${this.phobosAuthUrl}/auth/certs`;
+    const url = `${this.phobosAuthUrl}/api/v1/certs`;
     const response = await firstValueFrom(this.http.get<{ keys: any[] }>(url));
 
     return response.data.keys;
