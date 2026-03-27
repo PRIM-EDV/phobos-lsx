@@ -9,7 +9,7 @@ import * as jose from 'jose';
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor() {}
+  constructor() { }
 
   /**
    * Determines whether the client is authorized to access the resource.
@@ -18,27 +18,31 @@ export class RolesGuard implements CanActivate {
    * @throws UnauthorizedException if the client is not authorized.
    */
   public async canActivate(context: ExecutionContext): Promise<boolean> {
-    const token = context.switchToWs().getClient<Ws>().token; 
-    const roles = Reflect.getMetadata(ROLES_METADATA, context.getHandler()) as string[];
-
-    if (!roles) {
-      return true;
-    }
-
-    if (!token) {
-      return false;
-    } 
-
     try {
-      const payload = jose.decodeJwt<{ scope?: string } & jose.JWTPayload>(token);
+      const token = context.switchToWs().getClient<Ws>().token;
+      const roles = Reflect.getMetadata(ROLES_METADATA, context.getHandler()) as string[];
 
-      if (!roles.includes(payload.scope)) {
-        return false;
-      }
+      if (!this.hasAuthenticationToken(token)) { return false; }
+      if (!this.needsRolePermission(roles)) { return true; }
+      if (!this.hasRequiredRoles(token, roles)) { return false;}
 
-    } catch {
+    } catch (error) {
+      console.error('Error during canActivate:', error);
       return false;
     }
     return true;
+  }
+
+  private hasRequiredRoles(token: string, roles: string[]): boolean {
+    const payload = jose.decodeJwt<{ scope?: string } & jose.JWTPayload>(token);
+    return roles.includes(payload.scope);
+  }
+
+  private hasAuthenticationToken(token: string): boolean {
+    return !!token;
+  }
+
+  private needsRolePermission(roles: string[]): boolean {
+    return roles && roles.length > 0;
   }
 }

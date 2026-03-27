@@ -18,3 +18,18 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3005
+        volumeMounts:
+        - name: audio-devices
+          mountPath: /dev/snd
+        securityContext:
+          allowPrivilegeEscalation: false 
+          runAsUser: 1000 
+          runAsGroup: 29
+          capabilities:
+            add:
+              - SYS_RAWIO 
+      volumes:
+      - name: audio-devices
+        hostPath:
+          path: /dev/snd
+          type: Directory 

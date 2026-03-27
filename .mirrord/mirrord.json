@@ -1,5 +1,5 @@
 {
-    "accept_invalid_certificates": false,
+    "accept_invalid_certificates": true,
     "feature": {
         "network": {
             "incoming": {

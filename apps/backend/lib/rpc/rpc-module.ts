@@ -61,7 +61,7 @@ export class RpcModule {
                     }
                     ).catch((err) => {
                         gateway.error(event.client.id, event.msgId, err);
-                        console.error(err);
+                        console.warn(err);
                     });
                 }
             }

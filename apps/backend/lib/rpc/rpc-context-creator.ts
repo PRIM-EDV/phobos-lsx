@@ -1,4 +1,4 @@
-import { ContextType } from "@nestjs/common";
+import { ContextType, UnauthorizedException } from "@nestjs/common";
 import { Controller } from "@nestjs/common/interfaces";
 import { GuardsConsumer, GuardsContextCreator } from "@nestjs/core/guards";
 import { WsContextCreator } from "@nestjs/websockets/context/ws-context-creator";
@@ -78,8 +78,7 @@ export class RpcContextCreator extends WsContextCreator {
        
         const fn = async (...args: unknown[]) => {
             const initialArgs = (<any>this).contextUtils.createNullArray(argsLength);
-            fnCanActivate && (await fnCanActivate(args));
-            
+            fnCanActivate && await fnCanActivate(args);
 
             return (<any>this).interceptorsConsumer.intercept(
                 interceptors,
