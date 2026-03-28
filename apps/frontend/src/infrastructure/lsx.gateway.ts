@@ -2,7 +2,7 @@ import { Inject, Injectable, Optional, signal, WritableSignal } from "@angular/c
 import { v4 as uuidv4 } from 'uuid';
 import { Subject } from "rxjs";
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
-import { LsxMessage, Request, Response } from "@phobos-lsx/protocol";
+import { LsxMessage, Request, Response, Error } from "@phobos-lsx/protocol";
 import { MFE_REGISTRY_SERVICE_TOKEN, IRegistryService } from "@phobos/core";
 
 const LSX_SERVER_HOSTNAME = window?.__env?.LSX_SERVER_HOSTNAME || window.location.hostname;
@@ -23,7 +23,7 @@ export class LsxGateway {
   public isConnected: WritableSignal<boolean> = signal(false);
 
   private apiUrl: string;
-  private requests: Map<string, (value: Response) => void> = new Map<string, (value: Response) => void>();
+  private requests = new Map<string, {response: (value: Response) => void, error: (value: Error) => void}>();
   private ws!: WebSocketSubject<any>;
 
   constructor(
@@ -62,7 +62,7 @@ export class LsxGateway {
         id: uuidv4(),
         request: req
       }
-      this.requests.set(msg.id, resolve.bind(this));
+      this.requests.set(msg.id, {response: resolve.bind(this), error: reject.bind(this)});
       setTimeout(this.rejectOnTimeout.bind(this, msg.id, reject.bind(this, `${req} timed out`)), 5000);
       this.ws.next({ event: 'msg', data: JSON.stringify(LsxMessage.toJSON(msg)) });
     });
@@ -79,13 +79,21 @@ export class LsxGateway {
 
   private handleMessage(buffer: { event: 'msg', data: string }) {
     const msg = LsxMessage.fromJSON(JSON.parse(buffer.data));
+
     if (msg.request) {
       this.onRequest.next({ id: msg.id, request: msg.request });
     }
 
     if (msg.response) {
       if (this.requests.has(msg.id)) {
-        this.requests.get(msg.id)!(msg.response);
+        this.requests.get(msg.id)!.response(msg.response);
+        this.requests.delete(msg.id);
+      }
+    }
+
+    if (msg.error) {
+      if (this.requests.has(msg.id)) {
+        this.requests.get(msg.id)!.error(msg.error);
         this.requests.delete(msg.id);
       }
     }

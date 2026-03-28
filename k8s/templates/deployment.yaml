@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: phobos-lsx-deployment
+  name: {{ .Release.Name }}-deployment
 spec:
   replicas: 1
   selector:
@@ -16,20 +16,49 @@ spec:
       - name: phobos-lsx
         image: "prim/phobos-lsx:{{ .Chart.AppVersion }}"
         imagePullPolicy: IfNotPresent
+        env:
+        {{- if eq .Values.audio.host "wsl" }}
+        - name: PULSE_SERVER
+          value: "unix:/tmp/pulse/native"
+        - name: PULSE_COOKIE
+          value: "/home/audio-user/.config/pulse/cookie"
+        {{- end }}
         ports:
         - containerPort: 3005
         volumeMounts:
+        - name: alsa-config-volume
+          mountPath: /etc/asound.conf
+          subPath: asound.conf
+        {{- if eq .Values.audio.host "linux" }}
         - name: audio-devices
           mountPath: /dev/snd
+        {{- else if eq .Values.audio.host "wsl" }}
+        - mountPath: /tmp/pulse
+          name: pulse-socket-dir
+        - mountPath: /tmp/pulse-config-host
+          name: pulse-cookie-dir
+        {{- end }}
         securityContext:
-          allowPrivilegeEscalation: false 
-          runAsUser: 1000 
+          allowPrivilegeEscalation: true
+          runAsUser: 1000
           runAsGroup: 29
           capabilities:
             add:
-              - SYS_RAWIO 
+              - SYS_RAWIO
       volumes:
+      - name: alsa-config-volume
+        configMap:
+          name: {{ .Release.Name }}-alsa-config
+      {{- if eq .Values.audio.host "linux" }}
       - name: audio-devices
         hostPath:
           path: /dev/snd
-          type: Directory 
+          type: Directory
+      {{- else if eq .Values.audio.host "wsl" }}
+      - name: pulse-socket-dir
+        hostPath:
+          path: /run/desktop/mnt/host/wslg/runtime-dir/pulse
+      - name: pulse-cookie-dir
+        hostPath:
+          path: /run/desktop/mnt/host/wslg/.config/pulse
+      {{- end }}

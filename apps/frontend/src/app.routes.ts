@@ -39,7 +39,9 @@ export const routes: Routes = [
     component: TechnicalComponent,
     canActivate: [authzGuard],
     data: {
-      roles: ['tec', 'admin']
+      roles: ['tec', 'admin'],
+      view: 'TEC',
+      tab: 'POWER'
     }
   }
 ];

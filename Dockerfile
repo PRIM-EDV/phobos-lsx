@@ -23,7 +23,7 @@ RUN jq 'del(.version)' apps/frontend/package.json > apps/frontend/package.json.s
 # Base dependencies layer
 # ----------------------
 FROM base AS deps
-RUN apt update && apt install python3 build-essential protobuf-compiler alsa-utils libasound2-dev -y
+RUN apt update && apt install python3 build-essential protobuf-compiler alsa-utils libasound2-dev libasound2-plugins -y
 
 WORKDIR /opt/phobos-lsx
 
@@ -56,8 +56,8 @@ FROM backend
 WORKDIR /opt/phobos-lsx
 COPY --from=frontend /opt/phobos-lsx/apps/frontend/dist/phobos-lsx/browser ./apps/backend/dist/public
 
-# Get alsa config
-COPY ./asound.conf /etc/asound.conf
+# # Get alsa config
+# COPY ./asound.conf /etc/asound.conf
 
 # Run startscript
 COPY ./docker-entrypoint.sh ./

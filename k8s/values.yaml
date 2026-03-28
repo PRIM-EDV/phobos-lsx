@@ -1,2 +1,5 @@
 mfe:
   path: /app/lsx
+
+audio:
+  host: "wsl" # "linux" or "wsl"
