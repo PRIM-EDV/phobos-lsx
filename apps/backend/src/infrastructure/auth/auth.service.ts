@@ -2,9 +2,9 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
-import { firstValueFrom } from 'rxjs';
+import { WinstonLogger } from '@phobos/infrastructure';
 
-import { WinstonLogger } from '../logger/winston/winston.logger';
+import { firstValueFrom } from 'rxjs';
 
 import * as jose from 'jose';
 

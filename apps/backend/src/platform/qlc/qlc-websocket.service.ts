@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
+import { WinstonLogger } from "@phobos/infrastructure";
 import { Subject } from "rxjs";
-import { LoggingService } from "src/core/logging/logging.service";
 
 import * as WebSocket from "ws"
+
 @Injectable()
 export class QlcWebsocketService {
 
@@ -16,8 +17,10 @@ export class QlcWebsocketService {
 
   constructor(
     private readonly config: ConfigService,
-    private readonly log: LoggingService
+    private readonly logger: WinstonLogger
   ) {
+    this.logger.setContext(QlcWebsocketService.name);
+
     this.wsUrl = this.config.get<string>('QLCPLUS_WS_URL') || 'ws://localhost:9999/qlcplusWS';
     this.connectWebsocket();
   }
@@ -41,13 +44,13 @@ export class QlcWebsocketService {
   }
 
   private onConnectionClosed() {
-    this.log.info(`Could not connect to ${this.wsUrl} retrying...`)
+    this.logger.log(`Could not connect to ${this.wsUrl} retrying...`)
     setTimeout(this.reconnectWebsocket.bind(this), 5000);
     this.onClosed.next();
   }
 
   private onConnectionSuccess() {
-    this.log.info(`Connected to ${this.wsUrl}`);
+    this.logger.log(`Connected to ${this.wsUrl}`);
     this.onOpen.next();
   }
 

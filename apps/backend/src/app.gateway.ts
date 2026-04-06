@@ -1,20 +1,18 @@
-import * as WebSocket from 'ws';
-import {
-  SubscribeMessage,
-  WebSocketGateway,
-  WebSocketServer,
-} from '@nestjs/websockets';
+import { HttpAdapterHost } from '@nestjs/core';
+import { SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
+import { WinstonLogger } from '@phobos/infrastructure';
 import { LsxMessage, Request, Response } from '@phobos-lsx/protocol';
 
-import { v4 as uuidv4 } from 'uuid';
-
 import { Subject } from 'rxjs';
-import { Ws } from './common/interfaces/ws';
-import { HttpAdapterHost } from '@nestjs/core';
-import { WinstonLogger } from './infrastructure/logger/winston/winston.logger';
-import { AuthService } from './infrastructure/auth/auth.service';
-import { IncomingMessage } from 'http';
+import { v4 as uuidv4 } from 'uuid';
 import { Stream } from 'stream';
+import { IncomingMessage } from 'http';
+
+import { Ws } from './common/interfaces/ws';
+import { AuthService } from './infrastructure/auth/auth.service';
+
+import * as WebSocket from 'ws';
+
 
 @WebSocketGateway({path: '/api'})
 export class AppGateway {

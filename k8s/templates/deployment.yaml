@@ -62,3 +62,4 @@ spec:
         hostPath:
           path: /run/desktop/mnt/host/wslg/.config/pulse
       {{- end }}
+      

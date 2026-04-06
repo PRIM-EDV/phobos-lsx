@@ -7,3 +7,6 @@
 [submodule "libs/core"]
 	path = libs/phobos/core
 	url = https://github.com/PRIM-EDV/phobos-core
+[submodule "libs/phobos/infrastructure"]
+	path = libs/phobos/infrastructure
+	url = https://github.com/PRIM-EDV/phobos-infrastructure
