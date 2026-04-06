@@ -4,14 +4,16 @@
   "private": true,
   "workspaces": [
     "apps/*",
-    "libs/*"
+    "libs/*",
+    "libs/phobos/*",
+    "libs/phobos/lsx/*"
   ],
   "scripts": {
     "lerna": "lerna",
     "build": "lerna run build",
     "build:elements": "npm run build -w libs/phobos-elements",
     "build:protocol": "npm run build -w libs/protocol",
-    "k8s:build": "docker build -t prim/phobos-lsx:%npm_package_version% -t prim/phobos-lsx:latest .",
+    "docker:build": "node scripts/docker-build.js",
     "k8s:deploy": "helm upgrade --install phobos-lsx ./k8s",
     "k8s:status": "helm status phobos-lsx",
     "release": "release-it --workspaces",

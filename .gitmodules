@@ -1,9 +1,9 @@
 [submodule "libs/phobos-elements"]
-	path = libs/phobos-elements
+	path = libs/phobos/elements
 	url = https://github.com/PRIM-EDV/phobos-elements
 [submodule "libs/protocol"]
-	path = libs/protocol
+	path = libs/phobos/lsx/protocol
 	url = https://github.com/PRIM-EDV/lsx-protocol
 [submodule "libs/core"]
-	path = libs/core
+	path = libs/phobos/core
 	url = https://github.com/PRIM-EDV/phobos-core
