@@ -20,6 +20,7 @@
     "@angular/platform-browser": "21.1.5",
     "@angular/platform-browser-dynamic": "21.1.5",
     "@angular/router": "21.1.5",
+    "@phobos/common": "^1.0.0",
     "@phobos/core": "^1.2.0",
     "@phobos/elements": "^0.3.1",
     "@phobos-lsx/protocol": "^0.1.0",

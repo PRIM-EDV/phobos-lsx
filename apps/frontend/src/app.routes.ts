@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
+import { authzGuard } from '@phobos/common';
+
 import { GeneralComponent } from './general/general.component';
 import { DroneComponent } from './drone/drone.component';
-import { authzGuard } from './auth/authz.guard';
 import { TechnicalComponent } from './technical/technical.component';
 import { EventComponent } from './event/event.component';
 
